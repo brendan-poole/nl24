@@ -3,7 +3,8 @@
 <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <!--property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/-->
             <!-- something broke with v4 so had to create own dialect extension to handle booleans -->
             <!-- property name="hibernate.dialect" value="newlaw.util.SQLServerDialectExt"/-->
             <!-- value="create" to build a new database on each run; value="update" to modify an existing database; value="create-drop" means the same as "create" but also drops tables when Hibernate closes; value="validate" makes no changes to the database -->
