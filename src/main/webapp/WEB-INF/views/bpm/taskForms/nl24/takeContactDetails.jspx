@@ -1,0 +1,41 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<c:if test="${command.currentPage == 'client'}">
+			<c:set var="clientSelected" value="selectedtab"/>
+		</c:if>
+		<li id="${clientSelected}"><button class="tabbutton" name="page" value="client">Contact details</button></li>
+	</ul>
+	<div class="tabcontent">
+	<c:set var="contactPath" scope="request" value="processInstance.data.client.contact"/>
+	<c:if test="${command.currentPage == 'client' or empty command.currentPage}">
+		<label for="_title_id">Title</label>
+		<form:select id="_title_id" path="${contactPath}.title"
+			cssClass="width200px" >
+				<form:option value=""></form:option>
+				<form:options  items="${titles}"/>
+		</form:select>
+		<form:errors cssClass="errors" path="${contactPath}.title"/>
+		<br/>
+		<c:set var="contactPath" scope="request" value="processInstance.data.client.contact"/>
+		<label for="_forename_id">Forename</label>
+		<form:input id="_forename_id" path="${contactPath}.forename"
+			cssClass="width200px" />
+		<form:errors cssClass="errors" path="${contactPath}.forename"/>
+		<br />
+		<label for="_surname_id">Surname</label>
+		<form:input id="_surname_id" path="${contactPath}.surname"
+			cssClass="width200px" />
+		<form:errors cssClass="errors" path="${contactPath}.surname"/>
+		<br/>
+		<label for="_mobileTelephone_id">Telephone</label>
+		<form:input id="_mobileTelephone_id" path="${contactPath}.mobileTelephone"
+			cssClass="width200px" />
+		<form:errors cssClass="errors" path="${contactPath}.mobileTelephone"/>
+		<br/>
+	</c:if>
+	<div style="float:inherit; clear: both; height: 0px;"/>
+	</div>
+</div>

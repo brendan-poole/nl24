@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+<util:set id="fnolPassengerSwimlanes1">
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="initiator"/>
+		<property name="name" value="Initiator" />
+		<property name="roles" value=""/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="fruHandler"/>
+		<property name="name" value="NL24 Handler" />
+		<property name="roles" value="NL24_Handler"/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="teamLeader"/>
+		<property name="name" value="Team Leader" />
+		<property name="roles" value="NL24_TeamLeader"/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="broker"/>
+		<property name="name" value="Broker" />
+		<property name="roles" value=""/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="solicitor" />
+		<property name="name" value="Solicitor" />
+		<property name="roles" value=""/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="newlawConflictResolver" />
+		<property name="name" value="NewLaw Conflict resolver " />
+		<property name="roles" value="NL24_NewlawConflictResolver"/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="creditServiceProvider" />
+		<property name="name" value="Credit Service Provider" />
+		<property name="roles" value=""/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="recoveryAgent" />
+		<property name="name" value="Recovery Agent" />
+		<property name="roles" value=""/>
+	</bean>
+</util:set>
+</beans>

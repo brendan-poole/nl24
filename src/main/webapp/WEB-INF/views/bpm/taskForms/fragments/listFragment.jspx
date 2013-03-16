@@ -1,0 +1,43 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+
+
+	<c:if test="${command.currentSubPage == null}">
+		<c:set scope="request" var="current" value="0"/>
+		<input type="hidden" name="currentSubPage" value="${firstId}"/>		
+	</c:if>
+	<c:forEach var="p" items="${items}" varStatus="status">
+		<c:if test="${p.id == command.currentSubPage}">
+			<c:set var="current"  scope="request"  value="${status.index}"/>
+		</c:if>
+	</c:forEach>
+	
+	<ul class="basictab">
+		<c:forEach var="p" items="${items}" varStatus="status">
+			<c:if test="${empty p.contact.forename and empty p.contact.surname}">
+				<c:if test="${command.currentSubPage == p.id or (empty command.currentSubPage and status.index == 0)}">
+					<li id="selectedtab"><button class="tabbutton" name="sub" value="${p.id}"><span style="color: gray;">${status.count}</span></button></li>
+				</c:if>				
+				<c:if test="${command.currentSubPage != p.id  and not (empty command.currentSubPage and status.index == 0)}">
+					<li><button class="tabbutton" name="sub" value="${p.id}"><span style="color: gray;">${status.count}</span></button></li>
+				</c:if>				
+			</c:if>
+			<c:if test="${not empty p.contact.forename or not empty p.contact.surname}">
+				<c:if test="${command.currentSubPage == p.id or (empty command.currentSubPage and status.index == 0)}">
+					<li id="selectedtab"><button class="tabbutton" name="sub" value="${p.id}">${p.contact.forename} ${p.contact.surname}</button></li>
+				</c:if>
+				<c:if test="${command.currentSubPage != p.id and not (empty command.currentSubPage and status.index == 0)}">
+					<li><button class="tabbutton" name="sub" value="${p.id}">${p.contact.forename} ${p.contact.surname}</button></li>
+				</c:if>
+			</c:if>
+			<c:if test="${status.count == 10}">
+				<c:set var="max" value="${true}"/>
+			</c:if>
+		</c:forEach>
+		<c:if test="${not max}">
+			<li><button class="tabbutton" name="add" value="${entity}">+</button></li>
+		</c:if>
+	</ul>
+</div>

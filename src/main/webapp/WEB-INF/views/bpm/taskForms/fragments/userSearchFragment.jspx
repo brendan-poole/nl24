@@ -1,0 +1,72 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0"
+	style="float: left; white-space: nowrap;">
+
+	<c:if test="${empty searchSeq}">
+		<c:set var="searchSeq" value="1" />
+	</c:if>
+
+	<label for="_SearchValue_id">${searchLabel}</label> <span
+		style="margin-right: 20px;" id="_SearchValue_id"> <c:out
+			value="${searchValue}" />
+	</span>
+	<c:if test="${empty command.searchResults}">
+		<c:if test="${not empty searchValue}">
+		</c:if>
+		<span
+			style="background: none repeat scroll 0% 0% rgb(241, 241, 255); border: 1px solid #bbd; padding: 7px; border-radius: 10px;">
+			<c:if test="${command.searchSeq == searchSeq}">
+				<form:input
+					cssStyle="float: none; width: 80px; border: 1px solid  #bbd;"
+					id="_searchText_id" path="searchText" />
+			</c:if> <c:if test="${command.searchSeq != searchSeq}">
+				<input style="float: none; width: 80px; border: 1px solid #bbd;"
+					id="_searchText_id" name="searchText" />
+			</c:if>
+			<button
+				style="background: none repeat scroll 0% 0% rgb(241, 241, 255); border: 1px solid #bbd; margin: 5px;"
+				name="search" value="user,${searchEntity},${searchSeq}"
+				type="submit">Search</button>
+		</span>
+		<c:if test="${command.searchSeq == searchSeq}">
+			<form:errors cssClass="errors" path="searchText" />
+		</c:if>
+	</c:if>
+	<c:if test="${not empty command.searchResults}">
+		<c:if test="${command.searchSeq == searchSeq}">
+			<span
+				style="background: none repeat scroll 0% 0% rgb(241, 241, 255); border: 1px solid #bbd; padding: 7px; border-radius: 10px;">
+				<form:input
+					cssStyle="float: none; width: 80px; border: 1px solid  #bbd;"
+					id="_searchText_id" path="searchText" />
+				<button
+					style="background: none repeat scroll 0% 0% rgb(241, 241, 255); border: 1px solid #bbd; margin: 5px;"
+					name="search" value="user,${searchEntity},${searchSeq}"
+					type="submit">Search</button> <form:select
+					cssStyle="float: none; border: 1px solid  #bbd;"
+					id="_searchResults_id" path="${searchPath}">
+					<form:options items="${command.searchResults}" itemValue="userName" />
+				</form:select>
+				<button
+					style="background: none repeat scroll 0% 0% rgb(241, 241, 255); border: 1px solid #bbd; margin: 5px;"
+					name="save" value="" type="submit">Save</button> <form:errors
+					cssClass="errors" path="searchText" />
+			</span>
+		</c:if>
+		<c:if test="${command.searchSeq != searchSeq}">
+			<span
+				style="background: none repeat scroll 0% 0% rgb(241, 241, 255); border: 1px solid #bbd; padding: 7px; border-radius: 10px;">
+				<input disabled="disabled"
+				style="float: none; width: 80px; border: 1px solid #bbd;"
+				id="_searchText_id" name="" />
+				<button disabled="disabled"
+					style="background: none repeat scroll 0% 0% rgb(241, 241, 255); border: 1px solid #bbd; margin: 5px;"
+					name="search" value="user,${searchEntity},${searchSeq}"
+					type="submit">Search</button>
+			</span>
+		</c:if>
+	</c:if>
+
+</div>

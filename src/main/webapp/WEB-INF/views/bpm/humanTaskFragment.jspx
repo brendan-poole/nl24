@@ -1,0 +1,27 @@
+<div  xmlns:c="http://java.sun.com/jsp/jstl/core"	
+xmlns:spring="http://www.springframework.org/tags"
+	xmlns:jsp="http://java.sun.com/JSP/Page">
+	<div id="actions">
+		<c:if test="${command.reviewMode}">
+			<button class="trans_button" name="reviewComplete" type="submit">Complete</button>
+		</c:if>
+		<!-- c:if test="${not command.reviewMode}">
+			<c:forEach items="${phase.transitions}" var="task">
+				<button class="trans_button" name="task=${task.code},phase=${phase.code}" type="submit">
+				${task.name}
+				</button>
+			</c:forEach>
+		</c:if-->
+		<c:if test="${not command.reviewMode}">
+			<c:forEach items="${phase.transitions}" var="task">
+				<input id="${task.code}_id" type="radio" style="vertical-align: middle; margin: 0px;" 
+				value="${task.code}" name="transition"/>
+				<label  style=" float: none; width: auto; margin-right: 20px; font-weight: bold;" 
+					for="${task.code}_id">${task.name}</label>
+			</c:forEach>
+			<button id="continueButton_id" class="trans_button" type="submit">
+			Continue...
+			</button>
+		</c:if>
+	</div>
+</div>

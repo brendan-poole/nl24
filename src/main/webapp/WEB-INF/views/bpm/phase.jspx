@@ -1,0 +1,67 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0"
+	>
+	<jsp:output omit-xml-declaration="yes" />
+	<spring:url value="/${command.processInstance.id}/${command.currentPhase}" var="form_url" />
+	<form:form action="${form_url}" method="POST" modelAttribute="command" enctype="multipart/form-data">
+	<form:hidden path="currentPhase"/>
+	<c:if test="${command.currentPage != null}">
+	<form:hidden path="currentPage"/>
+	</c:if>
+	<div style="float: right; clear: none;">
+		<spring:url var="pi_url" value="/pi/${command.processInstance.id}"/>
+		Claim reference: <span style="font-weight: bold;"><a href="${pi_url}"><c:out value="${command.processInstance.reference}"/></a></span>
+		<c:if test="${not empty command.processInstance.mainContact.surname}">
+			<br/>Client:<span style="font-weight: bold;"><c:out value="${command.processInstance.mainContact.title} ${command.processInstance.mainContact.forename} ${command.processInstance.mainContact.surname}"/></span>
+		</c:if>
+	</div>
+	<h1>
+		<c:out value="${phase.name}"/>
+	</h1>
+	<div>
+		<form:errors cssClass="errors" delimiter="&lt;p/&gt;" />
+	</div>
+	<c:if test="${not empty messages}">
+		<div align="center" style="font-weight: bold;">
+			<c:forEach var="msg" items="${messages}">
+			<c:out value="${msg}"/><br/>
+			</c:forEach>
+		</div>
+	</c:if>
+	<c:if test="${command.reviewMode}">
+		<sec:authorize access="!hasRole('NL24_UpdateForms')">
+			<span style="font-weight: bold; color: red;">NOTE: YOU DO NOT HAVE ACCESS TO AMEND FORMS, THEREFORE ANY CHANGES YOU MAKE WILL NOT BE SAVED.</span>			
+		</sec:authorize>
+	</c:if>
+	<c:if test="${not empty command.taskForm}">
+		<jsp:include page="../bpm/taskForms/${command.processInstance.processDefinition.code}/${command.taskForm}.jspx"/>
+	</c:if>	
+
+	<!-- c:if test="${not empty otherPhases}">
+		<c:forEach var="pa" items="${otherPhases}">
+			<spring:url value="/${command.processInstance.id}/${pa.phaseCode}" var="phase_url"/>
+			<a href="${phase_url}"><c:out value="${pa.phase.name} [${pa.phase.swimlane.name}]"/></a><br/>
+		</c:forEach>
+	</c:if-->
+	
+	<br/>
+		<jsp:include page="humanTaskFragment.jspx"/>
+		<!-- fieldset>
+			<legend>Debug info</legend>
+		<c:forEach var="taskType" items="${taskTypes}">
+			<form:input path="fnolCase.${taskType.code}"/>
+			<c:out value="${taskType.code}"/>
+			<br/>		
+		</c:forEach>
+		<br/>
+		<input type="submit" name="refresh" value="Refresh"/>
+		</fieldset>
+		<br/-->
+		<!-- c:out value="${command.processInstance.version}"/-->
+		<!-- jsp:include page="devComments.jspx"/-->
+	</form:form>
+</div>
+	

@@ -1,0 +1,93 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<jsp:output omit-xml-declaration="yes" />
+	<spring:url value="/${processInstance.id}" var="form_url" />
+	<form:form action="${form_url}" method="POST" modelAttribute="command">
+
+		<c:if test="${not empty messages}">
+			<div align="center" style="font-weight: bold;">
+				<c:forEach var="msg" items="${messages}">
+				<c:out value="${msg}"/><br/>
+				</c:forEach>
+			</div>
+		</c:if>
+	
+		<div style="float: right; clear: none;">
+		Claim reference: <span style="font-weight: bold;"><c:out value="${processInstance.reference}"/></span>
+		<c:if test="${not empty processInstance.mainContact.surname}">
+			<br/>Client:<span style="font-weight: bold;"><c:out value="${processInstance.mainContact.title} ${processInstance.mainContact.forename} ${processInstance.mainContact.surname}"/></span>
+		</c:if>
+		<br/>Status: <span style="font-weight: bold;"><c:out value="${processInstance.status}"/></span>
+	</div>
+	<div id="pi_phases" style="float:left;">
+		<h1>Worklist</h1>
+		<table class="altrowstable" id="alternatecolor2">
+		<tr>
+			<th>Due</th>
+			<th>Phase</th>
+			<th>Swimlane</th>
+		</tr>
+		<c:forEach var="pa" items="${processInstance.phaseAssignments}">
+		<!--sec:authorize access="hasRole('${pa.phase.swimlane.roles}')"-->
+			<tr  class="priority${pa.priority}">
+				<td><fmt:formatDate value="${pa.due}" pattern="dd/MM/yyyy HH:mm"/></td>
+				<td> 
+					<spring:url value="/${processInstance.id}/${pa.phaseCode}" var="phase_url"/>
+					<a href="${phase_url}"><c:out value="${pa.phase.name}"/></a>
+				</td>
+				<td>${pa.phase.swimlane.name}</td>
+			</tr>
+			<!-- /sec:authorize-->
+		</c:forEach>
+		</table>
+	</div>
+	<div id="pi_swimlanes" style="float: right;">
+		<h1>Swimlanes</h1>
+		<table class="altrowstable" id="alternatecolor2">
+		<tr>
+			<th>Swimlane</th>
+			<th>Assignee</th>
+		</tr>
+		<c:forEach var="sa" items="${processInstance.swimlaneAssignments}">
+			<tr>
+				<td>${sa.swimlane.name}</td>
+				<td>${sa.assignee}</td>
+			</tr>
+		</c:forEach>
+		</table>
+	</div>
+
+	<div id="pi_log" style="clear: both;">
+		<h1>History</h1>
+		<table class="altrowstable" id="alternatecolor2">
+			<tr>
+				<th>Phase</th>
+				<th>Outcome</th>
+				<th>Completed</th>
+				<th>User</th>
+			</tr>
+			<c:forEach var="kd" items="${processInstance.keyDates}">
+				<tr>
+					<td>
+						<c:if test="${not empty kd.phase.defaultPage}">
+							<spring:url value="/${processInstance.id}/${kd.phaseCode}" var="phase_url"/>
+							<a href="${phase_url}"><c:out value="${kd.phase.name}"/></a>
+						</c:if>
+						<c:if test="${empty kd.phase.defaultPage}">
+							<c:out value="${kd.phase.name}"/>
+						</c:if>
+					</td>
+					<td><c:out value="${kd.transition.name}"/></td>
+					<td><fmt:formatDate value="${kd.triggered}" pattern="dd/MM/yyyy HH:mm"/></td>
+					<td><c:out value="${kd.username}"/></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+	</form:form>
+	<div  class="clear"> </div>
+</div>
+	

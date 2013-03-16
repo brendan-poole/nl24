@@ -1,0 +1,8 @@
+<div  xmlns:c="http://java.sun.com/jsp/jstl/core"	
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="http://www.springframework.org/tags/form"
+	style="width: 50%" class="dev">
+		<!-- label for="devComments_id">Testing notes</label-->
+		Testing notes<br/>	
+		<form:textarea id="devComments_id" cols="80"  rows="10" path="devComments.value"/>
+</div>

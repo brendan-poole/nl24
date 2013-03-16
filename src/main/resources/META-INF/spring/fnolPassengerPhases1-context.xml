@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<util:set id="fnolPassengerPhases1">
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="start"/>
+		<property name="name" value="Start"/>
+		<property name="swimlaneCode" value="initiator"/>
+		<property name="actionHandler">
+			<bean class="newlaw.bpm.handler.StartActionHandler"/>
+		</property>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="started" />
+					<property name="name" value="Process started" />
+					<property name="toPhaseCode" value="confirmWhetherMinor"/>
+					<property name="period" value="period1hour"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="confirmWhetherMinor"/>
+		<property name="name" value="Confirm whether a minor passenger"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="adult" />
+					<property name="name" value="Adult" />
+					<property name="toPhaseCode" value="callToPassenger"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="minor" />
+					<property name="name" value="Minor" />
+					<property name="toPhaseCode" value=""/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="callToPassenger"/>
+		<property name="name" value="Call to passenger"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="defaultPage" value="passenger"/>
+		<property name="pages">
+			<list>
+				<value>passenger</value>
+				<value>injury</value>
+			</list>
+		</property>
+		
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="completed" />
+					<property name="name" value="Completed" />
+					<property name="toPhaseCode" value="confirmInjury"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="confirmInjury"/>
+		<property name="name" value="Confirm injury"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="actionHandler">
+			<bean class="nl24.passenger.ConfirmInjuryActionHandler"/>
+		</property>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="injured"/>
+					<property name="name" value="Injured" />
+					<property name="toPhaseCode" value="csqCall,newlawConflictSearch"/>
+					<property name="period" value="period1month,now"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="notInjured"/>
+					<property name="name" value="Not injured" />
+					<property name="toPhaseCode" value="csqCall,clientCare24hours,clientCare48hours,clientCare7days"/>
+					<property name="period" value="period1month,period24hours,period48hours,period7days"/>
+					<property name="dueDateHandlers">
+						<list>
+							<bean class="nl24.bpm.handler.OneMonthFollowingInjuryConfirmationDueDateHandler"/>
+							<bean class="newlaw.bpm.handler.DefaultDueDateHandler"/>
+							<bean class="newlaw.bpm.handler.DefaultDueDateHandler"/>
+							<bean class="newlaw.bpm.handler.DefaultDueDateHandler"/>
+						</list>
+					</property>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="csqCall"/>
+		<property name="name" value="CSQ call"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="csqCallComplete"/>
+					<property name="name" value="CSQ call completed" />
+					<property name="toPhaseCode" value=""/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="clientCare24hours"/>
+		<property name="name" value="24 hour client care call"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete"/>
+					<property name="name" value="Complete" />
+					<property name="toPhaseCode" value=""/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="clientCare48hours"/>
+		<property name="name" value="48 hour client care call"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete"/>
+					<property name="name" value="Complete" />
+					<property name="toPhaseCode" value=""/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="clientCare7days"/>
+		<property name="name" value="7 day client care call"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete"/>
+					<property name="name" value="Complete" />
+					<property name="toPhaseCode" value=""/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="nl24DocumentationToClient"/>
+		<property name="name" value="NL24 documentation to client"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="nl24DocsSent"/>
+					<property name="name" value="Docs sent" />
+					<property name="toPhaseCode" value=""/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="newlawConflictSearch"/>
+		<property name="name" value="Newlaw conflict search"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<!--  property name="actionHandler">
+			<bean class="nl24.bpm.handler.NewlawConflictSearchActionHandler"/>
+		</property-->
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="conflictFound"/>
+					<property name="name" value="Conflict found" />
+					<property name="toPhaseCode" value="newlawConfirmWhetherConflict"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="noConflictFound"/>
+					<property name="name" value="No conflict found" />
+					<property name="toPhaseCode" value="completePersonalInjuryClaim,chasePersonalInjuryClaimCompletion,nl24DocumentationToClient"/>
+					<property name="period" value="now,period3months,now"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="newlawConfirmWhetherConflict"/>
+		<property name="name" value="Newlaw confirm whether conflict"/>
+		<property name="swimlaneCode" value="newlawConflictResolver"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="yes"/>
+					<property name="name" value="Conflict exists" />
+					<property name="toPhaseCode" value="instructOtherPanelSolicitorPrimary"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="no"/>
+					<property name="name" value="No conflict found" />
+					<property name="toPhaseCode" value="completePersonalInjuryClaim,chasePersonalInjuryClaimCompletion,nl24DocumentationToClient"/>
+					<property name="period" value="now,period3months,now"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="instructOtherPanelSolicitorPrimary"/>
+		<property name="name" value="Instruct other panel solicitor"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="actionHandler">
+			<bean class="nl24.bpm.handler.InstructPrimarySolicitorActionHandler"/>
+		</property>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete"/>
+					<property name="name" value="Complete" />
+					<property name="toPhaseCode" value="primarySolConfirmAcceptanceOfCase,chasePrimarySolAcceptance"/>
+					<property name="period" value="now,period48hours"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="chasePrimarySolAcceptance"/>
+		<property name="name" value="Chase primary solicitor for acceptance of case"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="accept"/>
+					<property name="name" value="Accept" />
+					<property name="toPhaseCode" value="completePersonalInjuryClaim"/>
+					<property name="invalidatePhases" value="primarySolConfirmAcceptanceOfCase"/>
+					<property name="period" value="period48hours"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="pending"/>
+					<property name="name" value="Pending" />
+					<property name="toPhaseCode" value="reviewPendingCasePrimarySol"/>
+					<property name="invalidatePhases" value="primarySolConfirmAcceptanceOfCase"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="reject"/>
+					<property name="name" value="Reject" />
+					<property name="toPhaseCode" value="primarySolEnterRejectionReason,enterPrimarySolRejectReason"/>
+					<property name="invalidatePhases" value="primarySolConfirmAcceptanceOfCase"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="primarySolConfirmAcceptanceOfCase"/>
+		<property name="name" value="Confirm acceptance of case"/>
+		<property name="swimlaneCode" value="solicitor"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="accept"/>
+					<property name="name" value="Accept" />
+					<property name="toPhaseCode" value="completePersonalInjuryClaim"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="pending"/>
+					<property name="name" value="Pending" />
+					<property name="toPhaseCode" value="reviewPendingCasePrimarySol"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="reject"/>
+					<property name="name" value="Reject" />
+					<property name="toPhaseCode" value="primarySolEnterRejectionReason,enterPrimarySolRejectReason"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="primarySolEnterRejectionReason"/>
+		<property name="name" value="Enter rejection reason"/>
+		<property name="swimlaneCode" value="solicitor"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete"/>
+					<property name="name" value="Continue" />
+					<property name="toPhaseCode" value="adviseClientPassedToAnotherSol"/>
+					<property name="invalidatePhases" value="enterPrimarySolRejectReason"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="enterPrimarySolRejectReason"/>
+		<property name="name" value="Enter rejection reason"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete"/>
+					<property name="name" value="Complete" />
+					<property name="toPhaseCode" value="adviseClientPassedToAnotherSol"/>
+					<property name="invalidatePhases" value="primarySolEnterRejectionReason"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="secondarySolConfirmAcceptanceOfCase"/>
+		<property name="name" value="Confirm acceptance of case"/>
+		<property name="swimlaneCode" value="solicitor"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="accept"/>
+					<property name="name" value="Accept" />
+					<property name="toPhaseCode" value="completePersonalInjuryClaim"/>
+					<property name="invalidatePhases" value="chaseSecondarySolAcceptance"/>
+					
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="pending"/>
+					<property name="name" value="Pending" />
+					<property name="toPhaseCode" value="reviewPendingCaseSecondarySol"/>
+					<property name="invalidatePhases" value="chaseSecondarySolAcceptance"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="rejected"/>
+					<property name="name" value="Rejected" />
+					<property name="toPhaseCode" value=""/>
+					<property name="invalidatePhases" value="chaseSecondarySolAcceptance"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="chaseSecondarySolAcceptance"/>
+		<property name="name" value="Chase second solicitor for acceptance of case"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="accept"/>
+					<property name="name" value="Accept" />
+					<property name="toPhaseCode" value="completePersonalInjuryClaim"/>
+					<property name="invalidatePhases" value="secondarySolConfirmAcceptanceOfCase"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="pending"/>
+					<property name="name" value="Pending" />
+					<property name="toPhaseCode" value="reviewPendingCaseSecondarySol"/>
+					<property name="invalidatePhases" value="secondarySolConfirmAcceptanceOfCase"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="reject"/>
+					<property name="name" value="Reject" />
+					<property name="toPhaseCode" value=""/>
+					<property name="invalidatePhases" value="secondarySolConfirmAcceptanceOfCase"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="adviseClientPassedToAnotherSol"/>
+		<property name="name" value="Advise client claim passed to another solicitor"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete"/>
+					<property name="name" value="Complete" />
+					<property name="toPhaseCode" value="instructOtherPanelSolicitorSecondarySol"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="instructOtherPanelSolicitorSecondarySol"/>
+		<property name="name" value="Instruct other panel solicitor (2nd sol)"/>
+		<property name="actionHandler">
+			<bean class="nl24.bpm.handler.InstructSecondarySolicitorActionHandler"/>
+		</property>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete"/>
+					<property name="name" value="Complete" />
+					<property name="toPhaseCode" value="secondarySolConfirmAcceptanceOfCase,chaseSecondarySolAcceptance"/>
+					<property name="period" value="now,period48hours"/>
+					
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="reviewPendingCasePrimarySol"/>
+		<property name="name" value="Review pending case"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="accept"/>
+					<property name="name" value="Accept" />
+					<property name="toPhaseCode" value="completePersonalInjuryClaim"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="rejected"/>
+					<property name="name" value="Rejected" />
+					<property name="toPhaseCode" value="instructOtherPanelSolicitorSecondarySol"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="reviewPendingCaseSecondarySol"/>
+		<property name="name" value="Review pending case"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="accept"/>
+					<property name="name" value="Accept" />
+					<property name="toPhaseCode" value="completePersonalInjuryClaim"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="rejected"/>
+					<property name="name" value="Rejected" />
+					<property name="toPhaseCode" value=""/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="csqCall"/>
+		<property name="name" value="CSQ call"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete"/>
+					<property name="name" value="Complete" />
+					<property name="toPhaseCode" value=""/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="sendClaimToNewlaw"/>
+		<property name="name" value="Send claim to NewLaw"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="actionHandler">
+			<bean class="nl24.bpm.handler.SendClaimToNewlawActionHandler"/>
+		</property>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete"/>
+					<property name="name" value="Complete" />
+					<property name="toPhaseCode" value="completePersonalInjuryClaim,nl24DocumentationToClient"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="chasePersonalInjuryClaimCompletion"/>
+		<property name="name" value="Chase PI claim completion"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="chased"/>
+					<property name="name" value="Chased" />
+					<property name="toPhaseCode" value="chasePersonalInjuryClaimCompletion"/>
+					<property name="period" value="period1month"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="piClaimComplete"/>
+					<property name="name" value="PI claim complete" />
+					<property name="toPhaseCode" value=""/>
+					<property name="invalidatePhases" value="completePersonalInjuryClaim"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="completePersonalInjuryClaim"/>
+		<property name="name" value="Complete personal injury claim"/>
+		<property name="swimlaneCode" value="solicitor"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="settled"/>
+					<property name="name" value="Settled" />
+				</bean>
+			</set>
+		</property>
+	</bean>
+</util:set>
+</beans>

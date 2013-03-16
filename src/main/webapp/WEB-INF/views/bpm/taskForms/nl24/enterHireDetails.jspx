@@ -1,0 +1,33 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<c:if test="${command.currentPage == 'hireProvider'}">
+			<c:set var="hireProviderSelected" value="selectedtab"/>
+		</c:if>
+		<li id="${hireProviderSelected}"><button class="tabbutton" name="page" value="hireProvider">Hire details</button></li>
+	</ul>
+		
+	<div class="tabcontent">
+		<c:set var="searchLabel" scope="request" value="Hire provider"/>
+		<c:set var="searchEntity" scope="request" value="HireProvider"/>
+		<c:set var="searchPath" scope="request" value="processInstance.data.creditServiceProviderInstruction.hireProvider"/>
+		<c:set var="searchValueId" scope="request" value="${command.processInstance.data.creditServiceProviderInstruction.hireProvider.id}"/>
+		<c:set var="searchValue" scope="request" value="${command.processInstance.data.creditServiceProviderInstruction.hireProvider}"/>
+		<jsp:include page="fragments/organisationSearchFragment.jspx"/>
+		<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.hireProvider"/> 
+		<br/>
+		<label for="_vehicleCategoryGroupRating_id">Vehicle category group rating</label>
+		<form:select id="_title_id" path="processInstance.data.creditServiceProviderInstruction.vehicleCategoryGroupRating" cssClass="width200px" >
+			<form:option value=""/>
+			<form:options  items="${vehicleCategoryGroupRating}"/>
+		</form:select>
+		<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.vehicleCategoryGroupRating"/>
+		<br/>
+		 
+		<div style="float:inherit; clear: both; height: 0px;"/>
+		
+	</div>
+	
+</div>

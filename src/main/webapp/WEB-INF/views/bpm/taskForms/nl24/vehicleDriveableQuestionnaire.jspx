@@ -1,0 +1,101 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	All fields are mandatory.<br/>	
+	<ul class="basictab">
+		<c:if test="${command.currentPage == 'accident.vehicleDamage' or empty command.currentPage}">
+			<c:set var="accident_vehicleDamage_selected" value="selectedtab"/>
+		</c:if>
+		<li id="${accident_vehicleDamage_selected}">
+			<button class="tabbutton" name="page" value="accident.vehicleDamage">Vehicle damage</button>
+		</li>
+	</ul>
+	
+	<div class="tabcontent">
+	<c:if test="${command.currentPage == 'accident.vehicleDamage' or empty command.currentPage}">
+		<c:set var="vehicleDamage" value="processInstance.data.accident.vehicleDamage"/>
+		<div style="float: left; width: 33%;">
+			<label for="_wheelsOnAndStraight_id">Are the wheels on and
+				straight?</label>
+			<form:select id="_wheelsOnAndStraight_id"
+				path="${vehicleDamage}.wheelsOnAndStraight">
+				<form:option value=""></form:option>
+				<form:option value="true">Yes</form:option>
+				<form:option value="false">No</form:option>
+			</form:select>
+			<br />
+			<label for="_anyFluidCommingFromVehicle_id">Any
+				fluid coming from vehicle?</label>
+			<form:select id="_anyFluidCommingFromVehicle_id"
+				path="${vehicleDamage}.anyFluidCommingFromVehicle">
+				<form:option value=""></form:option>
+				<form:option value="true">Yes</form:option>
+				<form:option value="false">No</form:option>
+			</form:select>
+			<br /> <label for="_anythingHangingOffVehicle_id">Anything
+				hanging off vehicle?</label>
+			<form:select id="_anythingHangingOffVehicle_id"
+				path="${vehicleDamage}.anythingHangingOffVehicle">
+				<form:option value=""></form:option>
+				<form:option value="true">Yes</form:option>
+				<form:option value="false">No</form:option>
+			</form:select>
+			<br />
+		</div>
+
+		<div style="float: left; width: 33%;">
+			<label for="_anyDamageToLights_id">Any damage to front
+				lights?</label>
+			<form:select id="_anyDamageToLights_id"
+				path="${vehicleDamage}.anyDamageToLights">
+				<form:option value=""></form:option>
+				<form:option value="true">Yes</form:option>
+				<form:option value="false">No</form:option>
+			</form:select>
+			<br /> <label for="_anyDamageToBackLights_id">Any damage
+				to rear lights?</label>
+			<form:select id="_anyDamageToBackLights_id"
+				path="${vehicleDamage}.anyDamageToBackLights">
+				<form:option value=""></form:option>
+				<form:option value="true">Yes</form:option>
+				<form:option value="false">No</form:option>
+			</form:select>
+			<br /> <label for="_vehicleUnsecure_id">Is the vehicle
+				unsecure?</label>
+			<form:select id="_vehicleUnsecure_id"
+				path="${vehicleDamage}.vehicleUnsecure">
+				<form:option value=""></form:option>
+				<form:option value="true">Yes</form:option>
+				<form:option value="false">No</form:option>
+			</form:select>
+			<br />
+		</div>
+
+		<div style="float: left; width: 33%;">
+			<label for="_anyWater_id">Any water within car?</label>
+			<form:select id="_anyWater_id" path="${vehicleDamage}.anyWater"
+				cssClass="width100px">
+				<form:option value=""></form:option>
+				<form:option value="true">Yes</form:option>
+				<form:option value="false">No</form:option>
+			</form:select>
+			<br /> <label for="_anyWindowsBroken_id">Any windows
+				broken?</label>
+			<form:select id="_anyWindowsBroken_id"
+				path="${vehicleDamage}.anyWindowsBroken">
+				<form:option value=""></form:option>
+				<form:option value="true">Yes</form:option>
+				<form:option value="false">No</form:option>
+			</form:select>
+			<br />
+		</div>
+
+		<div style="clear: both;"><label for="_vehicleDamageDetails_id">Location of and damage to vehicle</label>
+		<form:textarea id="_vehicleDamageDetails_id" cols="50"  rows="5" path="processInstance.data.client.vehicleDamageDetails"/></div>
+		<form:errors cssClass="errors" path="processInstance.data.client.vehicleDamageDetails"/>
+	</c:if>
+
+	<div style="float:inherit; clear: both; height: 0px;"/>
+	</div>
+</div>

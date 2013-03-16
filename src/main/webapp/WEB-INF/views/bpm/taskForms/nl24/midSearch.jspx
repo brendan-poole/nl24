@@ -1,0 +1,40 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<c:if test="${command.currentPage == 'midSearch'}">
+			<c:set var="midSearchSelected" value="selectedtab"/>
+		</c:if>
+		<li id="${midSearchSelected}"><button class="tabbutton" name="page" value="midSearch">Mid search</button></li>
+	</ul>
+		
+	<div class="tabcontent">
+			
+		<label for="_vrn_id">Vehicle registration</label>
+		<form:input id="_vrn_id" path="processInstance.data.client.vehicle.vrn"
+			cssClass="width200px" />
+		<br />
+		<br />
+		<span style="font-weight: bold;">Perform a mid search <a href="http://www.askmid.com/" target="top">here</a>.</span>
+		<br/>
+		<br/>
+		<c:set var="searchLabel" scope="request" value="Insurer"/>
+		<c:set var="searchEntity" scope="request" value="Insurer"/>
+		<c:set var="searchPath" scope="request" value="processInstance.data.client.insurer"/>
+		<c:set var="searchValueId" scope="request" value="${command.processInstance.data.client.insurer.id}"/>
+		<c:set var="searchValue" scope="request" value="${command.processInstance.data.client.insurer}"/>
+		<jsp:include page="../fragments/organisationSearchFragment.jspx"/>
+
+		<label for="_rejectedEscalationNote_id">Search results</label>
+		<form:textarea rows="5" cols="50" id="_searchResults_id" path="processInstance.data.midResult"
+			cssClass="width200px" >
+		</form:textarea>
+		<br />
+		<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.rejectedEscalationNote"/>
+		
+		<div style="float:inherit; clear: both; height: 0px;"/>
+		
+	</div>
+	
+</div>

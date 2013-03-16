@@ -1,0 +1,40 @@
+<div  xmlns:c="http://java.sun.com/jsp/jstl/core"
+ 	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	
+		<label for="_vehicleType_id">Vehicle type</label>
+		<form:select id="_broker_id" path="${vehiclePath}.vehicleType" cssClass="width200px">
+			<form:option value=""></form:option>
+			<form:options items="${vehicleTypes}"/>
+		</form:select> 
+		<form:errors cssClass="errors" path="${vehiclePath}.vehicleType"/>
+		
+		<br />
+		<label for="_vrn_id">VRN</label>
+		<form:input id="_vrn_id" path="${vehiclePath}.vrn"
+			cssClass="width200px" />
+		<form:errors cssClass="errors" path="${vehiclePath}.vrn"/>
+		<br />
+		<label for="_make_id">Make</label>
+		<form:input id="_make_id" path="${vehiclePath}.make"
+			cssClass="width200px" />
+		<form:errors cssClass="errors" path="${vehiclePath}.make"/>
+		<br />
+		<label for="_model_id">Model</label>
+		<form:input id="_model_id" path="${vehiclePath}.model"
+			cssClass="width200px" />
+		<form:errors cssClass="errors" path="${vehiclePath}.model"/>
+		<br />
+		<label for="_colour_id">Colour</label>
+		<form:input id="_colour_id" path="${vehiclePath}.colour"
+			cssClass="width200px" />
+		<form:errors cssClass="errors" path="${vehiclePath}.colour"/>
+		<br />
+		<label for="_engineSize_id">Engine size</label>
+		<form:input id="_engineSize_id" path="${vehiclePath}.engineSize"
+			cssClass="width200px" />
+		<form:errors cssClass="errors" path="${vehiclePath}.engineSize"/>
+		<br />
+	
+</div>

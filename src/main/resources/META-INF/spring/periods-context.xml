@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="now" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	<bean id="period15mins" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="15"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	<bean id="period30mins" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="30"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	<bean id="period1hour" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="1"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	<bean id="period2hours" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="2"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	<bean id="period24hours" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="24"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	<bean id="period1day" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="1"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	<bean id="period48hours" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="48"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	<bean id="period3days" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="3"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	<bean id="period5days" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="5"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	<bean id="period7days" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="7"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	<bean id="period1month" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="1"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	<bean id="period3months" class="org.joda.time.Period">
+		<constructor-arg value="0"/>
+		<constructor-arg value="3"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+
+
+
+</beans>

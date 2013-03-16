@@ -1,0 +1,114 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+
+	<div style="float: left;">
+		<div><label for="_accidentCircumstances_id">Accident circumstances</label>
+		<form:errors cssClass="errors" path="processInstance.data.accident.accidentCircumstances"/>
+		<br/>			
+		<form:textarea id="_accidentCircumstances_id" cols="50"  rows="5" path="processInstance.data.accident.accidentCircumstances"/></div>
+	</div>
+	<div style="float: right;">
+		<div><label for="_claimantPositionInVehicle_id">Where were you sat in the vehicle?</label>
+		<form:input id="_claimantPositionInVehicle_id" path="processInstance.data.accident.claimantPositionInVehicle"/></div>
+		<form:errors cssClass="errors" path="processInstance.data.accident.claimantPositionInVehicle"/>
+		<br/>
+		<div><label for="_purposeOfJourney_id">Purpose of journey</label>
+		<form:input id="_purposeOfJourney_id" path="processInstance.data.accident.purposeOfJourney"/></div>
+		<form:errors cssClass="errors" path="processInstance.data.accident.purposeOfJourney"/>
+		<br/>
+		<div><label for="_journeyDuration_id">For how long had you been traveling?</label>
+		<form:input id="_journeyDuration_id" path="processInstance.data.accident.journeyDuration"/></div>
+		<form:errors cssClass="errors" path="processInstance.data.accident.journeyDuration"/>
+		<br/>
+		<div><label for="_claimantCollectedLocation_id">From where were you collected?</label>
+		<form:input id="_claimantCollectedLocation_id" path="processInstance.data.accident.claimantCollectedLocation"/></div>
+		<form:errors cssClass="errors" path="processInstance.data.accident.claimantCollectedLocation"/>
+		<br/>
+		<label for="_seatBelt_id">Were you wearing a seatbelt?</label>
+		<form:select id="_seatBelt_id"
+			path="processInstance.data.accident.seatBelt">
+			<form:option value=""></form:option>
+			<form:option value="true">Yes</form:option>
+			<form:option value="false">No</form:option>
+		</form:select>
+		<form:errors cssClass="errors" path="processInstance.data.accident.seatBelt"/>
+		<br />
+	</div>
+	<div style="padding-top: 20px; padding-bottom: 20px; clear: both;">
+		<hr/>
+	</div>
+	<div style="float: left; width: 33%">
+		<div style="font-weight: bold;" >Nature of accident</div>
+		<br/>
+		<div><label for="_vehicleHitSide_id">Hit by party emerging from side road</label>
+		<form:checkbox id="_vehicleHitSide_id" path="processInstance.data.accident.vehicleHitSide"/></div>
+		<br/>
+		<div><label for="_accidentOnRoundabout_id">Accident on roundabout</label>
+		<form:checkbox id="_accidentOnRoundabout_id" path="processInstance.data.accident.accidentOnRoundabout"/></div>
+		<br />
+		<div><label for="_vehicleHitInRear_id">Hit in rear</label>
+		<form:checkbox id="_vehicleHitInRear_id" path="processInstance.data.accident.vehicleHitInRear"/></div>
+		<br />
+		<div><label for="_vehicleHitWhilstParked_id">Hit whilst parked</label>
+		<form:checkbox id="_vehicleHitWhilstParked_id" path="processInstance.data.accident.vehicleHitWhilstParked"/></div>
+		<br />
+		<div><label for="_accidentChangingLanes_id">Hit whilst changing lanes</label>
+		<form:checkbox id="_accidentChangingLanes_id" path="processInstance.data.accident.accidentChangingLanes"/></div>
+		<br />
+		<div><label for="_concertinaCollision_id">Concertina collision</label>
+		<form:checkbox id="_concertinaCollision_id" path="processInstance.data.accident.concertinaCollision"/></div>
+		<br />
+		<div><label for="_accidentInCarPark_id">Accident in car park</label>
+		<form:checkbox id="_accidentInCarPark_id" path="processInstance.data.accident.accidentInCarPark"/></div>
+		<br />
+	</div>
+	<div style="float: left; width: 33%">	
+		<div style="font-weight: bold;">Weather</div>
+		<br/>
+		<div><label for="_weatherSun_id">Sun</label>
+		<form:checkbox id="_weatherSun_id" path="processInstance.data.accident.weatherSun"/></div>
+		<br />
+		<div><label for="_weatherRain_id">Rain</label>
+		<form:checkbox id="_weatherRain_id" path="processInstance.data.accident.weatherRain"/></div>
+		<br />
+		<div><label for="_weatherSnow_id">Snow</label>
+		<form:checkbox id="_weatherSnow_id" path="processInstance.data.accident.weatherSnow"/></div>
+		<br />
+		<div><label for="_weatherIce_id">Ice</label>
+		<form:checkbox id="_weatherIce_id" path="processInstance.data.accident.weatherIce"/></div>
+		<br />
+		<div><label for="_weatherFog_id">Fog</label>
+		<form:checkbox id="_weatherFox_id" path="processInstance.data.accident.weatherFog"/></div>
+		<br />
+		<div><label for="_otherWeatherDetails_id">Other</label>
+		<form:input id="_otherWeatherDetails_id" path="processInstance.data.accident.otherWeatherDetails"/></div>
+	</div>
+	<div style="float: left; width: 33%">	
+		<div style="font-weight: bold;">Conditions</div>
+		<br/>
+		<div><label for="_dry_id">Dry</label>
+		<form:checkbox id="_dry_id" path="processInstance.data.accident.dry"/></div>
+		<br />
+		<div><label for="_wet_id">Wet</label>
+		<form:checkbox id="_wet_id" path="processInstance.data.accident.wet"/></div>
+		<br />
+		<div><label for="_snow_id">Snow</label>
+		<form:checkbox id="_snow_id" path="processInstance.data.accident.snow"/></div>
+		<br />
+		<div><label for="_ice_id">Ice</label>
+		<form:checkbox id="_ice_id" path="processInstance.data.accident.ice"/></div>
+		<br />
+		<div><label for="_mud_id">Mud</label>
+		<form:checkbox id="_mud_id" path="processInstance.data.accident.mud"/></div>
+		<br />
+		<div><label for="_oil_id">Oil</label>
+		<form:checkbox id="_oil_id" path="processInstance.data.accident.oil"/></div>
+		<br />
+		<div><label for="_otherConditions_id">Other conditions</label>
+		<form:input id="_otherConditions_id" path="processInstance.data.accident.otherConditions"/></div>
+	</div>
+	
+	<div style="clear: both;"/>
+</div>

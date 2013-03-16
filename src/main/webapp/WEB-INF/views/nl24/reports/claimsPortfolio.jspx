@@ -1,0 +1,51 @@
+<div xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" 
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<jsp:output omit-xml-declaration="yes" />
+	<spring:url value="/reports/broker/claimsPortfolio" var="form_url" />
+	<form:form action="${form_url}" method="GET">
+	<form:input path="startDate"/>
+	<form:input path="endDate"/>
+	<input name="drill" id="drill_id"/>
+	<input name="broker" value="${command.broker.id }"/>
+	<c:if test="${ empty drilledItem}">
+		<table>
+			<tr>
+				<th>Item</th>
+				<th>Count</th>
+				
+			</tr>
+			<c:forEach var="l" items="${lists}">
+				<tr>
+					<td><c:out value="${items[l.key]}"/></td>
+					<td>
+						<a href="#" onclick="document.getElementById('drill_id').value='${l.key}'; document.forms[0].submit();"><c:out value="${fn:length(l.value)}"/></a>
+					</td>
+				</tr>
+		</c:forEach>
+		</table>	
+	</c:if>
+	<c:if test="${ not empty drilledItem}">
+		<table>
+			<tr>
+				<th>Ref</th>
+				<th>Client</th>
+				<th>${items[drilledItem]}</th>
+			</tr>
+			<c:forEach var="kd" items="${lists[drilledItem]}">
+				<tr>
+					<spring:url var="pi_url" value="/pi/${kd.processInstance.id}"/>
+					<td><a href="${pi_url}"><c:out value="${kd.processInstance.reference}"/></a></td>
+					<td><c:out value="${kd.processInstance.mainContact}"/></td>
+					<td><fmt:formatDate value="${kd.triggered}" pattern="dd/MM/yyyy HH:mm"/></td>
+				</tr>
+		</c:forEach>
+		</table>	
+	</c:if>
+	</form:form>	
+	<div style="float:inherit; clear: both; height: 0px;"/>
+</div>

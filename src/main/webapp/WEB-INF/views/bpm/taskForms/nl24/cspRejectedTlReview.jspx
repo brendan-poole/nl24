@@ -1,0 +1,23 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+
+	<ul class="basictab">
+		<li id="selectedtab">
+			<button class="tabbutton" name="page" value="cspRejectedTlReview">CSP rejected team leader review</button>
+		</li>
+	</ul>
+	<div class="tabcontent">
+		<c:if test="${command.currentPage == 'cspRejectedTlReview'}">
+			<label for="_rejectedEscalationNote_id">Rejected note</label>
+			<form:textarea rows="5" cols="50" id="_rejectedEscalationNote_id" path="processInstance.data.creditServiceProviderInstruction.rejectedEscalationNote"
+				cssClass="width200px" >
+			</form:textarea>
+			<br />
+			<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.rejectedEscalationNote"/>
+		</c:if>
+			<div style="float:inherit; clear: both; height: 0px;"/>
+		
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<div xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<jsp:output omit-xml-declaration="yes" />
+
+	<div>
+		<img style="float: right;" alt="NL24" src="${nl24logo}" />
+		<spring:url value="/hql" var="form_url" />
+		<form:form action="${form_url}" method="POST">
+			<form:textarea id="hql" cols="80" rows="10" path="query" />
+	${result}
+	<input type="submit"/>
+	</form:form>
+		<div style="float: inherit; clear: both; height: 0px;" />
+	</div>
+</div>

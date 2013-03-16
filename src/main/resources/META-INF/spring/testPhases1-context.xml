@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+<util:set id="testPhases1">
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="start"/>
+		<property name="name" value="Start"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="started" />
+					<property name="name" value="Process started" />
+					<property name="toPhaseCode" value="sayHello"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="sayHello"/>
+		<property name="name" value="Hello"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="toHello2" />
+					<property name="name" value="To hello 2" />
+					<property name="toPhaseCode" value="sayHello2"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="sayHello2"/>
+		<property name="name" value="Hello 2"/>
+		<property name="swimlaneCode" value="fruHandler"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="toEnd" />
+					<property name="name" value="To end" />
+				</bean>
+			</set>
+		</property>
+	</bean>
+</util:set>
+</beans>

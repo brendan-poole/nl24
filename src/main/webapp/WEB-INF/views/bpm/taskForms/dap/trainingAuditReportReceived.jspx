@@ -1,0 +1,19 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<li id="selectedtab"><button class="tabbutton" name="page" value="trainingAuditReport">Training audit report</button></li>
+	</ul>
+	<div class="tabcontent">
+		<c:if test="${command.currentPage == 'trainingAuditReport'}">
+			<div>Review the auditor's training report below and decide whether further action is required.</div>
+			<br/>
+			<br/>
+			<label for="_auditorsTrainingReport_id">Report</label>
+			<spring:url var="reportUrl" value="/${command.processInstance.id}/attachment/auditorsTrainingReport"/>
+			<a id="_auditorsTrainingReport_id"  href="${reportUrl}">Auditor's report</a>
+		</c:if>
+		<div style="float:inherit; clear: both; height: 0px;"/>
+	</div>
+</div>

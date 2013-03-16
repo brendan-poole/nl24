@@ -1,0 +1,45 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	
+	<label for="_thirdPartyInvolved_id">Third party involved?</label>
+	<form:select id="_thirdPartyInvolved_id"
+		path="processInstance.data.thirdPartyInvolved">
+		<form:option value=""></form:option>
+		<form:option value="true">Yes</form:option>
+		<form:option value="false">No</form:option>
+	</form:select>
+	<form:errors cssClass="errors" path="processInstance.data.thirdPartyInvolved"/>
+	<hr/>
+	<br />
+	<c:set var="contactPath" scope="request" value="processInstance.data.thirdParty.contact"/>
+	<jsp:include page="../fragments/contactFragment.jspx"/>
+	<br/>
+	<label for="_insurancePolicyNumber_id">Insurance policy number</label>
+	<form:input id="_insurancePolicyNumber_id" path="processInstance.data.thirdParty.insurancePolicyNumber"
+		cssClass="width200px" />
+	<form:errors cssClass="errors" path="processInstance.data.thirdParty.insurancePolicyNumber"/>
+	<br />
+	
+	<c:set var="searchLabel" scope="request" value="Insurer"/>
+	<c:set var="searchEntity" scope="request" value="Insurer"/>
+	<c:set var="searchPath" scope="request" value="processInstance.data.thirdParty.insurer"/>
+	<c:set var="searchValueId" scope="request" value="${command.processInstance.data.thirdParty.insurer.id}"/>
+	<c:set var="searchValue" scope="request" value="${command.processInstance.data.thirdParty.insurer}"/>
+	<jsp:include page="../fragments/organisationSearchFragment.jspx"/>
+	
+	<label for="_insurancePolicyNumber_id">VRN</label>
+	<form:input id="_insurancePolicyNumber_id" path="processInstance.data.thirdParty.vehicle.vrn"
+		cssClass="width200px" />
+	<form:errors cssClass="errors" path="processInstance.data.thirdParty.vehicle.vrn"/>
+	<br />
+	
+	<div style="float: left;">
+	
+		<div><label for="_vehicleDamageDetails_id">Vehicle damage details</label>
+		<br/>			
+		<form:textarea id="_vehicleDamageDetails_id" cols="80"  rows="5" path="processInstance.data.thirdParty.vehicleDamageDetails"/></div>
+	</div>
+	<div style="clear: both;"/>
+</div>

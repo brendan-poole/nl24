@@ -1,0 +1,24 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<li id="selectedtab"><button class="tabbutton" name="page" value="trainingNotes">Training audit</button></li>
+	</ul>
+	<div class="tabcontent">
+		<c:if test="${command.currentPage == 'auditorsTrainingReport'}">
+			<div>Complete the audit of the training that has been carried out. Provide the report by either uploading the file or filling out the text box below.</div>
+			<br/>
+			<br/>
+			<label for="_trainingNotes_id">Training notes</label>
+			<form:textarea readonly="true" id="_trainingNotes_id" cols="80"  rows="10" path="processInstance.data.trainingNotes"/>
+			<br/>
+			<br/>
+			<input type="hidden" name="fileCode" value="auditorsTrainingReport"/>
+			<form:label for="fileData" path="fileData">Report file</form:label>
+	        <form:input path="fileData" type="file"/>
+		</c:if>
+		
+		<div style="float:inherit; clear: both; height: 0px;"/>
+	</div>
+</div>

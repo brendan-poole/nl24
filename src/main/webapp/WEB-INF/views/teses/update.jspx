@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_nl24_domain_Tes" modelAttribute="tes" path="/teses" versionField="Version" z="AHOHPxVPK8AvGpMO7y4RGS4B74g=">
+        <field:input field="mainContact" id="c_nl24_domain_Tes_mainContact" z="WDHJriILkWZe+VG0HHOw6dBX0qQ="/>
+        <field:input field="processDefinitionKey" id="c_nl24_domain_Tes_processDefinitionKey" z="psnZsea6f4U+iZn1Lq10uwhLI24="/>
+        <field:simple field="phaseAssignments" id="c_nl24_domain_Tes_phaseAssignments" messageCode="entity_reference_not_managed" messageCodeAttribute="Phase Assignment" z="vxr3DYktWoXcV3iXA2xD/5HP4Lc="/>
+        <field:simple field="swimlaneAssignments" id="c_nl24_domain_Tes_swimlaneAssignments" messageCode="entity_reference_not_managed" messageCodeAttribute="Swimlane Assignment" z="XBsrx6wzhFMDDiaqMsRioGIQUk8="/>
+        <field:simple field="keyDates" id="c_nl24_domain_Tes_keyDates" messageCode="entity_reference_not_managed" messageCodeAttribute="Key Date" z="2Y/l80yzw2fgtC+N6tP1li3ju6c="/>
+    </form:update>
+</div>

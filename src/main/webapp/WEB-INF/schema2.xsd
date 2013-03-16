@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema elementFormDefault="qualified" version="1.0" targetNamespace="http://www.new-law.co.uk" xmlns:tns="http://www.new-law.co.uk" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:complexType name="processData" abstract="true">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="organisation" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="tns:contact">
+        <xs:sequence>
+          <xs:element name="contactName" type="xs:string" minOccurs="0"/>
+          <xs:element name="name" type="xs:string" minOccurs="0"/>
+          <xs:element name="telephone" type="xs:string" minOccurs="0"/>
+          <xs:element name="userGroup" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="contact" abstract="true">
+    <xs:sequence>
+      <xs:element name="address" type="tns:address" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="address">
+    <xs:sequence>
+      <xs:element name="city" type="xs:string" minOccurs="0"/>
+      <xs:element name="country" type="xs:string" minOccurs="0"/>
+      <xs:element name="county" type="xs:string" minOccurs="0"/>
+      <xs:element name="district" type="xs:string" minOccurs="0"/>
+      <xs:element name="houseName" type="xs:string" minOccurs="0"/>
+      <xs:element name="houseNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="postcode" type="xs:string" minOccurs="0"/>
+      <xs:element name="street1" type="xs:string" minOccurs="0"/>
+      <xs:element name="street2" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="person" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="tns:contact">
+        <xs:sequence>
+          <xs:element name="dateOfBirth" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="forename" type="xs:string" minOccurs="0"/>
+          <xs:element name="homeTelephone" type="xs:string" minOccurs="0"/>
+          <xs:element name="middleName" type="xs:string" minOccurs="0"/>
+          <xs:element name="mobileTelephone" type="xs:string" minOccurs="0"/>
+          <xs:element name="sex" type="xs:unsignedShort" minOccurs="0"/>
+          <xs:element name="surname" type="xs:string" minOccurs="0"/>
+          <xs:element name="title" type="tns:title" minOccurs="0"/>
+          <xs:element name="workTelephone" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="country">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="England"/>
+      <xs:enumeration value="Wales"/>
+      <xs:enumeration value="Scotland"/>
+      <xs:enumeration value="Northern_Ireland"/>
+      <xs:enumeration value="Foreign"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="title">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Mr"/>
+      <xs:enumeration value="Mrs"/>
+      <xs:enumeration value="Miss"/>
+      <xs:enumeration value="Ms"/>
+      <xs:enumeration value="Dr"/>
+      <xs:enumeration value="Other"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="injuryArea">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Neck"/>
+      <xs:enumeration value="Chest"/>
+      <xs:enumeration value="Back"/>
+      <xs:enumeration value="Fingers"/>
+      <xs:enumeration value="Thumb"/>
+      <xs:enumeration value="Hand"/>
+      <xs:enumeration value="Wrist"/>
+      <xs:enumeration value="Elbow"/>
+      <xs:enumeration value="Arm"/>
+      <xs:enumeration value="Toes"/>
+      <xs:enumeration value="Foot"/>
+      <xs:enumeration value="Ankle"/>
+      <xs:enumeration value="Knee"/>
+      <xs:enumeration value="Leg"/>
+      <xs:enumeration value="Achilles"/>
+      <xs:enumeration value="Hip"/>
+      <xs:enumeration value="Genitals"/>
+      <xs:enumeration value="Sternum"/>
+      <xs:enumeration value="Pelvis"/>
+      <xs:enumeration value="Stomach"/>
+      <xs:enumeration value="Minor_Head_Injury"/>
+      <xs:enumeration value="Severe_Head_Injury"/>
+      <xs:enumeration value="Ribs"/>
+      <xs:enumeration value="Shoulders"/>
+      <xs:enumeration value="Clavicle"/>
+      <xs:enumeration value="Facial_Injuries"/>
+      <xs:enumeration value="Nose"/>
+      <xs:enumeration value="Cheekbone"/>
+      <xs:enumeration value="Jaw"/>
+      <xs:enumeration value="Dental"/>
+      <xs:enumeration value="Internal_Injuries"/>
+      <xs:enumeration value="Loss_of_Sight"/>
+      <xs:enumeration value="Loss_of_Hearing"/>
+      <xs:enumeration value="Loss_of_an_Ear"/>
+      <xs:enumeration value="Tinnitus"/>
+      <xs:enumeration value="Loss_of_Smell"/>
+      <xs:enumeration value="Loss_of_Taste"/>
+      <xs:enumeration value="Psychological"/>
+      <xs:enumeration value="PTSD"/>
+      <xs:enumeration value="Fatality"/>
+      <xs:enumeration value="Loss_of_Hair"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="injuryType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Soft_Tissue"/>
+      <xs:enumeration value="Fracture"/>
+      <xs:enumeration value="Ligament"/>
+      <xs:enumeration value="Rupture"/>
+      <xs:enumeration value="Sprain"/>
+      <xs:enumeration value="Muscular"/>
+      <xs:enumeration value="Scarring"/>
+      <xs:enumeration value="Bruising"/>
+      <xs:enumeration value="Dislocation"/>
+      <xs:enumeration value="Laceration"/>
+      <xs:enumeration value="Fatality"/>
+      <xs:enumeration value="Amputation"/>
+      <xs:enumeration value="Respiratory"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="vehicleType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Car"/>
+      <xs:enumeration value="Van"/>
+      <xs:enumeration value="Motor_cycle"/>
+      <xs:enumeration value="Bus"/>
+      <xs:enumeration value="HGV"/>
+      <xs:enumeration value="Bicycle"/>
+      <xs:enumeration value="Tractor"/>
+      <xs:enumeration value="Quad_bike"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

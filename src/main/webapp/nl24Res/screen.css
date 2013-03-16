@@ -1,0 +1,138 @@
+label {
+	width: 200px; float: left;
+}
+
+BODY,P,DIV,TD,TR,TABLE,INPUT,SELECT,TEXTAREA {
+	COLOR: #000000; FONT-SIZE: 11px; FONT-FAMILY: Verdana; }
+hr {
+	border:1px solid #A9A9A9; }
+.Testo_Small,A.Testo_Small,A.Testo_Small:link,a.Testo_Small:active,A.Testo_Small:visited {
+	COLOR: #0000FF; FONT-SIZE: 10px; FONT-FAMILY: Verdana ; }
+A.Testo_Small:hover {
+	COLOR: #FF0000; FONT-SIZE: 10px; FONT-FAMILY: Verdana ; }
+A,A:visited,A:active {
+	COLOR: #0000FF ; }
+A:hover {
+	COLOR: #FF0000 ; }
+LEGEND A,LEGEND A:visited,LEGEND A:active,LEGEND A:hover {
+	COLOR: #FFFF00 ; }
+.testo_header,A.testo_header,A.testo_header:active,A.testo_header:visited {
+	COLOR: #FFFFFF; FONT-WEIGHT: bold; FONT-SIZE: 10px; FONT-FAMILY: Verdana; TEXT-DECORATION: none }
+A.testo_header:hover {
+	COLOR: #FFFF00; FONT-WEIGHT: bold; FONT-SIZE: 10px; FONT-FAMILY: Verdana; TEXT-DECORATION: none }
+A.View_Submit,A.View_Submit:active,A.View_Submit:visited {
+	FONT-SIZE: 10px; COLOR: #000000; FONT-FAMILY: Verdana }
+A.View_Submit:hover {
+	FONT-SIZE: 10px; COLOR: #000000; FONT-FAMILY: Verdana }
+.View_Link,A.View_Link,A.View_Link:active,A.View_Link:visited,A.View_Link:link {
+	COLOR: #0000FF; FONT-WEIGHT: bold; FONT-SIZE: 11px; FONT-FAMILY: Verdana }
+A.View_Link:hover {
+	COLOR: #FF0000; FONT-WEIGHT: bold; FONT-SIZE: 11px; FONT-FAMILY: Verdana }
+A.View_Table_link_small,A.View_Table_link_small:active,A.View_Table_link_small:visited {
+	COLOR: #0000FF; FONT-SIZE: 10px; FONT-FAMILY: Verdana; TEXT-DECORATION: none }
+A.View_Table_link_small:hover {
+	COLOR: #FF0000; FONT-SIZE: 10px; FONT-FAMILY: Verdana; TEXT-DECORATION: underline; }
+.View_Table_Message {
+	BORDER-RIGHT: #ff0000 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #ff0000 1px solid; PADDING-LEFT: 1px; FONT-SIZE: 11px; BACKGROUND: #ffeeee; PADDING-BOTTOM: 1px; BORDER-LEFT: #ff0000 1px solid; WIDTH: 100%; COLOR: #ff0000; PADDING-TOP: 1px; BORDER-BOTTOM: #ff0000 1px solid; FONT-FAMILY: Verdana }
+.Testo_Errore {
+	COLOR: #FF0000; FONT-WEIGHT: bold; border: 2px solid #FF0000; padding: 3px; display: block; background-color: #FFFFFF; margin-top: 5px; margin-bottom: 5px; }
+INPUT.testo_header,SELECT.testo_header {
+	COLOR: #000000; FONT-WEIGHT: normal; FONT-SIZE: 10px; FONT-FAMILY: Verdana }
+.testo_header_big {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #FFFFFF; FONT-FAMILY: Verdana }
+INPUT.bottone_header {
+	BACKGROUND: #000066; COLOR: #FFFFFF; FONT-WEIGHT: bold; FONT-SIZE: 10px; FONT-FAMILY: Verdana; }
+.blocco_header {
+	BACKGROUND: #000066; COLOR: #FFFFFF; FONT-WEIGHT: bold; FONT-SIZE: 15px; BORDER-BOTTOM: #FFFFFF 1px solid; FONT-FAMILY: Verdana }
+.testo_titolo {
+	COLOR: #000000; FONT-WEIGHT: bold; FONT-SIZE: 14px; FONT-FAMILY: Verdana }
+.blocco_footer {
+	BACKGROUND: #F0F0F0; COLOR: #000000; BORDER-TOP: #000066 1px solid; BORDER-BOTTOM: #000066 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 10px; MARGIN-BOTTOM: 4px; FONT-FAMILY: Verdana }
+.blocco_header_ombra {
+	BACKGROUND: #B4C6D0; BORDER-TOP: #dddddd 1px solid; BORDER-BOTTOM: #B4C6D0 2px ridge; }
+.view_maintable_title {
+	BACKGROUND: #F0F0F0; COLOR: #000000; PADDING-RIGHT: 10px; PADDING-LEFT: 4px; FONT-WEIGHT: bold; FONT-SIZE: 11px; FONT-FAMILY: Verdana }
+.view_maintable_cell {
+	BACKGROUND: #F0F0F0; COLOR: #000000; BORDER-TOP: #FFFFFF 3px solid; FONT-SIZE: 11px; FONT-FAMILY: Verdana }
+.view_maintable_cell2 {
+	BACKGROUND: #F0F0F0; COLOR: #000000; FONT-SIZE: 11px; FONT-FAMILY: Verdana }
+.table_separator {
+	BACKGROUND: #000066 }
+.folderContent {
+	BACKGROUND: #F0F0F0; PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px }
+FIELDSET {
+	BORDER: #000066 1px solid; PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 11px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; FONT-FAMILY: Verdana }
+LEGEND {
+	COLOR: #FFFFFF; BACKGROUND: #000066; BORDER:1px solid #000066; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; FONT-WEIGHT: bold; PADDING-BOTTOM: 1px; WIDTH: 100%; HEIGHT:16px; PADDING-TOP: 1px; }
+.View_Table_Title {
+	COLOR: #000000; FONT-WEIGHT: bold; FONT-SIZE: 11px; FONT-FAMILY: Verdana }
+.View_Table_Title_small {
+	COLOR: #000000; FONT-WEIGHT: bold; FONT-SIZE: 10px; FONT-FAMILY: Verdana }
+.View_Table_Text {
+	COLOR: #000000; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: 0px;  FONT-SIZE: 11px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; FONT-FAMILY: Verdana }
+.View_Table_Text_small {
+	COLOR: #000000; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: 0px;  FONT-SIZE: 10px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; FONT-FAMILY: Verdana }
+.View_Table_SelectedText {
+	COLOR: #000000; BACKGROUND-COLOR: #FFFFC8; FONT-WEIGHT: bold; VERTICAL-ALIGN: top; FONT-FAMILY: Verdana; }
+INPUT.View_Submit {
+	BACKGROUND-COLOR: #B4C6D0; COLOR: #000000; FONT-WEIGHT: bold; FONT-SIZE: 10px; MARGIN-RIGHT: 5px; FONT-FAMILY: Verdana; }
+.TreeView_Link,A.TreeView_Link,A.TreeView_Link:link,A.TreeView_Link:visited,A.TreeView_Link:active {
+	COLOR: #000000; BORDER: #FFFFFF 1px solid; DISPLAY: block; MARGIN-LEFT: 4px; WIDTH: 100%; FONT-FAMILY: Verdana; TEXT-DECORATION: none }
+A.TreeView_Link:hover {
+	BORDER: #A9A9A9 1px solid; BACKGROUND: #F0F0F0; COLOR: #000000; DISPLAY: block;  MARGIN-LEFT: 4px; WIDTH: 100%; FONT-FAMILY: Verdana; }
+.MainPage_Cell_Left {
+	BORDER-RIGHT: #000066 1px solid; PADDING-RIGHT: 10px; WIDTH: 50%; }
+.MainPage_Cell_Right { 
+	PADDING-LEFT: 10px; WIDTH: 50%; }
+.MandatoryField {
+	BACKGROUND: #FFFACD; }
+.OptionalField {
+	BACKGROUND: #FFFFFF; }
+.MissingField { 
+	BACKGROUND: #FFA07A; }
+.VerifiedField {
+	}
+.DisabledField,INPUT.disabled { 
+	BACKGROUND:#DCDCDC; }
+.View_ExitButton {
+	COLOR: #0000FF; BORDER: 0px; FONT-SIZE: 10px; BACKGROUND: none transparent; CURSOR: hand; TEXT-ALIGN: left; TEXT-DECORATION: underline; FONT-WEIGHT: bold; }
+.View_Table_Cella_Evidenziata { 
+	BACKGROUND: #FFFFC8; }
+.activeFolder, a.activeFolder, a.activeFolder:link, a.activeFolder:visited, a.activeFolder:active {
+	BACKGROUND: #000066; COLOR: #FFFFFF; FONT-WEIGHT: bold; FONT-SIZE: 10px; FONT-FAMILY: Verdana; text-decoration: none; }
+.nonActiveFolder, a.nonActiveFolder, a.nonActiveFolder:link, a.nonActiveFolder:visited, a.nonActiveFolder:active {
+	BACKGROUND: #F0F0F0; COLOR: #000000; FONT-WEIGHT: bold; FONT-SIZE: 10px; FONT-FAMILY: Verdana; text-decoration: none; }
+
+
+BODY { MARGIN: 0px; BACKGROUND-COLOR: #FFFFFF }
+.View_Body { PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; BACKGROUND-COLOR: #FFFFFF; }
+.width10px { WIDTH: 10px }
+.width25px { WIDTH: 25px }
+.width50px { WIDTH: 50px }
+.width75px { WIDTH: 75px }
+.width100px { WIDTH: 100px }
+.width150px { WIDTH: 150px }
+.width200px { WIDTH: 200px }
+.width250px { WIDTH: 250px }
+.width25perc { WIDTH: 25% }
+.width50perc { WIDTH: 50% }
+.width75perc { WIDTH: 75% }
+.width100perc { WIDTH: 100% }
+.Testo_Output { FONT-WEIGHT: bold ; }
+.Testo_Output_small { FONT-SIZE: 10px; }
+.LeftColumn { WIDTH: 20% }
+.RightColumn { WIDTH: 30% }
+.ScreenVisible { display:block; }
+.ScreenScrollable { width:100%; display:block; height:75px; overflow-y:scroll; padding:5px; }
+#tmpquit,.PrintGroupTitle,.PrintFirstGroupTitle,.ScreenHidden,.SignaturesFieldset { display:none; }
+#data_block { PADDING: 11px; }
+a.nonActiveFolder, a.nonActiveFolder:link, a.nonActiveFolder:visited, a.nonActiveFolder:active { padding-top: 4px; padding-bottom: 4px; }
+/* Internet Explorer Hack */
+* html a.nonActiveFolder, * html a.nonActiveFolder:link, * html a.nonActiveFolder:visited, * html a.nonActiveFolder:active { display:block; height: 20px; }
+.homePageLeft{width: 40%; padding: 20px;}
+.homePageRight{width: 60%; padding: 20px 20px 20px 0px;}
+a[disabled], a[disabled]:visited, a[disabled]:active, a[disabled]:hover { color:#999999; }
+button[disabled] { color:#EEEEEE; text-shadow: #999999 1px 1px 0px; }
+/* Highlight Worklist hack */
+.highlightWorklistTR{background-color: #B0FF00; color: black;}
+

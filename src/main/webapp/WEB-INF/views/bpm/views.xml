@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="bpm" name="bpm/default">
+        <put-attribute name="body" value="/WEB-INF/views/bpm/phase.jspx"/>
+    </definition>
+    <definition extends="bpm" name="bpm/dash">
+        <put-attribute name="body" value="/WEB-INF/views/bpm/dash.jspx"/>
+    </definition>
+    <definition extends="bpm" name="bpm/search">
+        <put-attribute name="body" value="/WEB-INF/views/bpm/search.jspx"/>
+    </definition>
+    <definition extends="bpm" name="bpm/processInstance">
+        <put-attribute name="body" value="/WEB-INF/views/bpm/processInstance.jspx"/>
+    </definition>
+    <definition extends="bpm" name="bpm/error">
+        <put-attribute name="body" value="/WEB-INF/views/bpm/error.jspx"/>
+    </definition>
+</tiles-definitions>

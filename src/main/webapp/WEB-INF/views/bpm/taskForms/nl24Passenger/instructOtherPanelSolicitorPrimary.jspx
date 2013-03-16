@@ -1,0 +1,19 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<li id="selectedtab"><button class="tabbutton" name="page" value="solicitor">Solicitor</button></li>
+	</ul>
+		
+	<div class="tabcontent">
+		<c:set var="searchLabel" scope="request" value="Solicitor"/>
+		<c:set var="searchEntity" scope="request" value="Solicitor"/>
+		<c:set var="searchPath" scope="request" value="processInstance.data.solicitorInstruction.solicitor"/>
+		<c:set var="searchValueId" scope="request" value="${command.processInstance.data.solicitorInstruction.solicitor.Id}"/>
+		<c:set var="searchValue" scope="request" value="${command.processInstance.data.solicitorInstruction.solicitor}"/>
+		<jsp:include page="../fragments/organisationSearchFragment.jspx"/>
+		<div style="float:inherit; clear: both; height: 0px;"/>
+	</div>
+	
+</div>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema elementFormDefault="qualified" version="1.0" targetNamespace="http://www.nl24.co.uk" xmlns:ns1="http://www.new-law.co.uk" xmlns:tns="http://www.nl24.co.uk" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="http://www.new-law.co.uk" schemaLocation="schema2.xsd"/>
+
+  <xs:element name="claim" type="tns:claim"/>
+
+  <xs:element name="getClaimDataRequest" type="tns:getClaimDataRequest"/>
+
+  <xs:element name="getClaimDataResponse" type="tns:getClaimDataResponse"/>
+
+  <xs:element name="getPiClaimsListReponse" type="tns:getPiClaimsListReponse"/>
+
+  <xs:element name="getPiClaimsListRequest" type="tns:getPiClaimsListRequest"/>
+
+  <xs:element name="setClaimReceivedRequest" type="tns:setClaimReceivedRequest"/>
+
+  <xs:element name="setClaimReceivedResponse" type="tns:setClaimReceivedResponse"/>
+
+  <xs:complexType name="getClaimDataResponse">
+    <xs:sequence>
+      <xs:element ref="tns:claim"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="claim">
+    <xs:complexContent>
+      <xs:extension base="ns1:processData">
+        <xs:sequence>
+          <xs:element name="accident" type="tns:accident" minOccurs="0"/>
+          <xs:element name="broker" type="tns:broker" minOccurs="0"/>
+          <xs:element name="brokerPolicyNumber" type="xs:string" minOccurs="0"/>
+          <xs:element name="client" type="tns:client" minOccurs="0"/>
+          <xs:element name="creditServiceProviderInstruction" type="tns:creditServiceProviderInstruction" minOccurs="0"/>
+          <xs:element name="isThirdPartyClaim" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="midResult" type="xs:string" minOccurs="0"/>
+          <xs:element name="policeAttendance" type="tns:policeAttendance" minOccurs="0"/>
+          <xs:element name="recoveryAgentInstruction" type="tns:recoveryAgentInstruction" minOccurs="0"/>
+          <xs:element name="solicitorInstruction" type="tns:solicitorInstruction" minOccurs="0"/>
+          <xs:element name="thirdParty" type="tns:thirdParty" minOccurs="0"/>
+          <xs:element name="thirdPartyInvolved" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="witnesses" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="witness" type="tns:witness" minOccurs="0" maxOccurs="unbounded"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="reference" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="accident">
+    <xs:sequence>
+      <xs:element name="accidentChangingLanes" type="xs:boolean"/>
+      <xs:element name="accidentCircumstances" type="xs:string" minOccurs="0"/>
+      <xs:element name="accidentDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="accidentInCarPark" type="xs:boolean"/>
+      <xs:element name="accidentOnRoundabout" type="xs:boolean"/>
+      <xs:element name="accidentTime" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="claimantCollectedLocation" type="xs:string" minOccurs="0"/>
+      <xs:element name="claimantKnowsNonFaultDriver" type="xs:boolean"/>
+      <xs:element name="claimantPositionInVehicle" type="xs:string" minOccurs="0"/>
+      <xs:element name="concertinaCollision" type="xs:boolean"/>
+      <xs:element name="country" type="ns1:country" minOccurs="0"/>
+      <xs:element name="driverIsDefendant" type="xs:boolean"/>
+      <xs:element name="dry" type="xs:boolean"/>
+      <xs:element name="ice" type="xs:boolean"/>
+      <xs:element name="journeyDuration" type="xs:string" minOccurs="0"/>
+      <xs:element name="landMarks" type="xs:string" minOccurs="0"/>
+      <xs:element name="location" type="xs:string" minOccurs="0"/>
+      <xs:element name="mud" type="xs:boolean"/>
+      <xs:element name="occupantsNumber" type="xs:int" minOccurs="0"/>
+      <xs:element name="oil" type="xs:boolean"/>
+      <xs:element name="otherCircumstances" type="xs:boolean"/>
+      <xs:element name="otherConditions" type="xs:string" minOccurs="0"/>
+      <xs:element name="otherWeatherDetails" type="xs:string" minOccurs="0"/>
+      <xs:element name="policeReported" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="postcode" type="xs:string" minOccurs="0"/>
+      <xs:element name="purposeOfJourney" type="xs:string" minOccurs="0"/>
+      <xs:element name="roadName" type="xs:string" minOccurs="0"/>
+      <xs:element name="seatBelt" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="snow" type="xs:boolean"/>
+      <xs:element name="town" type="xs:string" minOccurs="0"/>
+      <xs:element name="vehicleDamage" type="tns:vehicleDamage" minOccurs="0"/>
+      <xs:element name="vehicleHitInRear" type="xs:boolean"/>
+      <xs:element name="vehicleHitSide" type="xs:boolean"/>
+      <xs:element name="vehicleHitWhilstParked" type="xs:boolean"/>
+      <xs:element name="weatherFog" type="xs:boolean"/>
+      <xs:element name="weatherIce" type="xs:boolean"/>
+      <xs:element name="weatherRain" type="xs:boolean"/>
+      <xs:element name="weatherSnow" type="xs:boolean"/>
+      <xs:element name="weatherSun" type="xs:boolean"/>
+      <xs:element name="wet" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="vehicleDamage">
+    <xs:sequence>
+      <xs:element name="anyDamageToBackLights" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="anyDamageToLights" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="anyFluidCommingFromVehicle" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="anyWater" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="anyWindowsBroken" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="anythingHangingOffVehicle" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="vehicleSafe" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="vehicleUnsecure" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="wheelsOnAndStraight" type="xs:boolean" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="broker">
+    <xs:complexContent>
+      <xs:extension base="ns1:organisation">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string" minOccurs="0"/>
+          <xs:element name="defaultCreditServiceProvider" type="tns:creditServiceProvider" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="creditServiceProvider">
+    <xs:complexContent>
+      <xs:extension base="ns1:organisation">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="nl24Person">
+    <xs:complexContent>
+      <xs:extension base="ns1:person">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="client">
+    <xs:complexContent>
+      <xs:extension base="tns:party">
+        <xs:sequence>
+          <xs:element name="accessToOtherVehicle" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="nationalInsuranceNumber" type="xs:string" minOccurs="0"/>
+          <xs:element name="occupation" type="xs:string" minOccurs="0"/>
+          <xs:element name="reasonNoNationalInsuranceNumber" type="xs:string" minOccurs="0"/>
+          <xs:element name="vatRegistered" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="party" abstract="true">
+    <xs:sequence>
+      <xs:element name="contact" type="ns1:contact" minOccurs="0"/>
+      <xs:element name="injured" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="injury" type="tns:injury" minOccurs="0"/>
+      <xs:element name="insurancePolicyNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="insurer" type="tns:insurer" minOccurs="0"/>
+      <xs:element name="passengers" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="passenger" type="tns:passenger" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="vehicle" type="tns:vehicle" minOccurs="0"/>
+      <xs:element name="vehicleDamageDetails" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="injury">
+    <xs:sequence>
+      <xs:element name="bone" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="daysDetained" type="xs:int" minOccurs="0"/>
+      <xs:element name="injuryArea" type="ns1:injuryArea" minOccurs="0"/>
+      <xs:element name="injuryDescription" type="xs:string" minOccurs="0"/>
+      <xs:element name="injuryType" type="ns1:injuryType" minOccurs="0"/>
+      <xs:element name="medicalAttentionSought" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="other" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="softTissue" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="visitedGp" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="whiplash" type="xs:boolean" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insurer">
+    <xs:complexContent>
+      <xs:extension base="ns1:organisation">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="passenger">
+    <xs:sequence>
+      <xs:element name="contact" type="ns1:contact" minOccurs="0"/>
+      <xs:element name="injured" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="injury" type="tns:injury" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="vehicle">
+    <xs:sequence>
+      <xs:element name="colour" type="xs:string" minOccurs="0"/>
+      <xs:element name="engineSize" type="xs:string" minOccurs="0"/>
+      <xs:element name="make" type="xs:string" minOccurs="0"/>
+      <xs:element name="model" type="xs:string" minOccurs="0"/>
+      <xs:element name="vehicleType" type="ns1:vehicleType" minOccurs="0"/>
+      <xs:element name="vrn" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creditServiceProviderInstruction">
+    <xs:sequence>
+      <xs:element name="creditServiceProvider" type="tns:creditServiceProvider" minOccurs="0"/>
+      <xs:element name="engineersTotalLossSalvageValue" type="xs:double" minOccurs="0"/>
+      <xs:element name="estimatedRepairsCompletionDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="hireProvider" type="tns:hireProvider" minOccurs="0"/>
+      <xs:element name="hireRejectionReason" type="xs:string" minOccurs="0"/>
+      <xs:element name="reasonVehicleNotInForRepair" type="xs:string" minOccurs="0"/>
+      <xs:element name="rejectedEscalationNote" type="xs:string" minOccurs="0"/>
+      <xs:element name="repairer" type="tns:repairer" minOccurs="0"/>
+      <xs:element name="repairerJobNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="repairsStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="totalLossSalvageValue" type="xs:double" minOccurs="0"/>
+      <xs:element name="totalLossSalvageValueAgreed" type="xs:double" minOccurs="0"/>
+      <xs:element name="totalLossSalvageValueAuthorised" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="totalLossValuation" type="xs:double" minOccurs="0"/>
+      <xs:element name="vehicleCategoryGroupRating" type="tns:vehicleCategory" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hireProvider">
+    <xs:complexContent>
+      <xs:extension base="ns1:organisation">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="repairer">
+    <xs:complexContent>
+      <xs:extension base="ns1:organisation">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="policeAttendance">
+    <xs:sequence>
+      <xs:element name="comments" type="xs:string" minOccurs="0"/>
+      <xs:element name="police" type="tns:police" minOccurs="0"/>
+      <xs:element name="referenceNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="reportingOfficerName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="police">
+    <xs:complexContent>
+      <xs:extension base="ns1:organisation">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="recoveryAgentInstruction">
+    <xs:sequence>
+      <xs:element name="recoveryAgent" type="tns:recoveryAgent" minOccurs="0"/>
+      <xs:element name="vehicleLocation" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="recoveryAgent">
+    <xs:complexContent>
+      <xs:extension base="ns1:organisation">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="solicitorInstruction">
+    <xs:sequence>
+      <xs:element name="solicitor" type="tns:solicitor" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="solicitor">
+    <xs:complexContent>
+      <xs:extension base="ns1:organisation">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="thirdParty">
+    <xs:complexContent>
+      <xs:extension base="tns:party">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="witness">
+    <xs:sequence>
+      <xs:element name="contact" type="ns1:contact" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getClaimDataRequest">
+    <xs:sequence/>
+    <xs:attribute name="reference" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="getPiClaimsListReponse">
+    <xs:sequence>
+      <xs:element name="claims">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="tns:claim" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getPiClaimsListRequest">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="setClaimReceivedRequest">
+    <xs:sequence/>
+    <xs:attribute name="reference" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="setClaimReceivedResponse">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="vehicleCategory">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Standard"/>
+      <xs:enumeration value="Prestige"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

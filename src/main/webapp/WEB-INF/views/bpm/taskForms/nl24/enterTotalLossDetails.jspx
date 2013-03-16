@@ -1,0 +1,44 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+
+	<ul class="basictab">
+
+		<li id="selectedtab">
+			<button class="tabbutton" name="page" value="totalLoss">Total loss</button>
+		</li>
+	</ul>
+	<div class="tabcontent">
+		<c:if test="${command.currentPage == 'totalLoss'}">
+			<label for="_totalLossValuation_id">Total loss valuation</label>
+			<form:input id="_totalLossValuation_id" path="processInstance.data.creditServiceProviderInstruction.totalLossValuation"
+				cssClass="width200px" />
+			<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.totalLossValuation"/>
+			<br />
+			<label for="_engineersTotalLossSalvageValue_id">Salvage value (engineer's)</label>
+			<form:input id="_engineersTotalLossSalvageValue_id" path="processInstance.data.creditServiceProviderInstruction.engineersTotalLossSalvageValue"
+				cssClass="width200px" />
+			<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.engineersTotalLossSalvageValue"/>
+			<br />
+			<label for="_totalLossSalvageValue_id">Salvage value</label>
+			<form:input id="_totalLossSalvageValue_id" path="processInstance.data.creditServiceProviderInstruction.totalLossSalvageValue"
+				cssClass="width200px" />
+			<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.totalLossSalvageValue"/>
+			<br />
+			<label for="_totalLossSalvageValueAuthorised_id">Salvage value authorised date</label>
+			<form:input id="_totalLossSalvageValueAuthorised_id" path="processInstance.data.creditServiceProviderInstruction.totalLossSalvageValueAuthorised"
+				cssClass="width200px" />
+				(dd/mm/yyyy)
+			<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.totalLossSalvageValueAuthorised"/>
+			<br />
+			<label for="_totalLossSalvageValueAgreed_id">Salvage valuation</label>
+			<form:input id="_totalLossSalvageValueAgreed_id" path="processInstance.data.creditServiceProviderInstruction.totalLossSalvageValueAgreed"
+				cssClass="width200px" />
+			<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.totalLossSalvageValueAgreed"/>
+			<br />
+		</c:if>
+			<div style="float:inherit; clear: both; height: 0px;"/>
+		
+	</div>
+</div>

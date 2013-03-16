@@ -1,0 +1,61 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<div style="float: left">
+		<label for="_accidentDate_id">Accident date</label>
+		<form:input id="_accidentDate_id"
+			path="processInstance.data.accident.accidentDate"/>
+			(dd/mm/yyyy)
+		<form:errors cssClass="errors" path="processInstance.data.accident.accidentDate"/>
+		<br/>
+		<label for="_accidentTime_id">Accident time</label>
+		<form:input id="_accidentTime_id"
+			path="processInstance.data.accident.accidentTime"/>
+			(hh:mm) 24 hour
+		<form:errors cssClass="errors" path="processInstance.data.accident.accidentTime"/>
+		<br/>
+		<label for="_roadName_id">Road name</label>
+		<form:input id="_roadName_id"
+			path="processInstance.data.accident.roadName"  onchange="updateMap();"/>
+		<form:errors cssClass="errors" path="processInstance.data.accident.roadName"/>
+		<br/>
+		<label for="_town_id">Town</label>
+		<form:input id="_town_id"
+			path="processInstance.data.accident.town" onchange="updateMap();"/>
+		<form:errors cssClass="errors" path="processInstance.data.accident.town"/>
+		<br/>
+		<label for="_location_id">Location</label>
+		<form:input id="_location_id"
+			path="processInstance.data.accident.location"/>
+		<form:errors cssClass="errors" path="processInstance.data.accident.location"/>
+		<br/>
+		<label for="_country_id">Country</label>
+		<form:select id="_country_id" path="processInstance.data.accident.country"
+			cssClass="width200px" >
+				<form:option value=""></form:option>
+				<form:options items="${countries}"/>
+		</form:select>
+		<form:errors cssClass="errors" path="processInstance.data.accident.country"/>
+		<br/>
+		</div>
+		<div style="float: right;" >
+		<iframe id="google" width="400" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="#">&#160;</iframe>
+		<script type="text/javascript">
+			function updateMap() {
+				var road = document.getElementById("_roadName_id").value;
+				var town = document.getElementById("_town_id").value;
+				var map = document.getElementById("google");
+				if(road == "" || town == "") {
+					map.style.display="none";
+				} else {
+					map.style.display="block";
+					var loc = road+","+town;
+					map.src="http://maps.google.co.uk/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q="+loc+"&amp;aq=&amp;ie=UTF8&amp;hq=&amp;hnear="+loc+",+United+Kingdom&amp;z=14&amp;output=embed&amp;iwloc=B";
+				}
+			}
+			updateMap();
+		</script>
+		</div>
+		<div style="float: inherit; clear: both;"/>		
+</div>

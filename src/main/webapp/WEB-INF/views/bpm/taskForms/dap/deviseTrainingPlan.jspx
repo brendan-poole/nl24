@@ -1,0 +1,23 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<li id="selectedtab"><button class="tabbutton" name="page" value="trainingPlan">Training plan</button></li>
+	</ul>
+	<div class="tabcontent">
+		Review the auditor's report and devise a training plan.
+		<br/>
+		<br/>
+		<label for="_auditorsNotes_id">Auditor's report</label>
+		<spring:url var="reportUrl" value="/${command.processInstance.id}/attachment/auditorsReport"/>
+		<a href="${reportUrl}">Auditor's report</a>
+		<br/>
+		<br/>
+		<input type="hidden" name="fileCode" value="trainingPlan"/>
+		<form:label for="fileData" path="fileData">Training plan</form:label>
+		<form:input path="fileData" type="file"/>
+		
+		<div style="float:inherit; clear: both; height: 0px;"/>
+	</div>
+</div>

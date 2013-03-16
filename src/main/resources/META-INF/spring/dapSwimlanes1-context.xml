@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+<util:set id="dapSwimlanes1">
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="initiator"/>
+		<property name="name" value="Initiator" />
+		<property name="roles" value=""/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="trainee"/>
+		<property name="name" value="Trainee" />
+		<property name="roles" value=""/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="training"/>
+		<property name="name" value="Training" />
+		<property name="roles" value="ROLE_TRAINING"/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="compliance"/>
+		<property name="name" value="Compliance" />
+		<property name="roles" value="ROLE_COMPLIANCE"/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="board"/>
+		<property name="name" value="Board" />
+		<property name="roles" value="ROLE_BOARD"/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="manager"/>
+		<property name="name" value="Manager" />
+		<property name="roles" value="ROLE_MANAGER"/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="auditor"/>
+		<property name="name" value="Auditor" />
+		<property name="roles" value="ROLE_AUDITOR"/>
+	</bean>
+	<bean class="newlaw.bpm.swimlane.Swimlane">
+		<property name="code" value="humanResources"/>
+		<property name="name" value="HumanResources" />
+		<property name="roles" value="ROLE_HUMAN_RESOURCES"/>
+	</bean>
+</util:set>
+</beans>

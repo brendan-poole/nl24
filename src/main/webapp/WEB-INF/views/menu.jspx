@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:category id="c_view" z="HjmI4Chx/kBYfS/6HjBLbCA+XpU=">
+            <menu:item id="i_view__foo_blahsmith_id" messageCode="global_generic" url="/foo/blah/smith" z="veFiJm0bRD+JPHcnML1M0/v71A0="/>
+        </menu:category>
+        <menu:category id="c_tes" z="7DwsLG87QJfa0r/Qhuj+Pz481n4=">
+            <menu:item id="i_tes_new" messageCode="global_menu_new" url="/teses?form" z="bPzb0OKj7FoETs9A25x8Nk78l2o="/>
+            <menu:item id="i_tes_list" messageCode="global_menu_list" url="/teses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="V0csS9J+5SSOAL/rG8kvp0G1wO4="/>
+        </menu:category>
+    </menu:menu>
+</div>

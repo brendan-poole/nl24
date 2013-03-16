@@ -1,0 +1,79 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+
+	<c:if test="${empty searchSeq}">
+		<c:set var="searchSeq" value="1"/>
+	</c:if>
+	<c:if test="${fn:contains(command.addEntry, searchSeq)}">
+		<ul class="basictab">
+			<li id="selectedtab"><button class="tabbutton">${searchLabel}</button></li>
+		</ul>
+		<div class="tabcontent">
+			<c:set var="contactPath" scope="request" value="${searchPath}"/>
+			<jsp:include page="organisationFragment.jspx"/>
+			<div class="clear"/>
+		</div>
+	</c:if>
+	<c:if test="${not fn:contains(command.addEntry, searchSeq)}">
+		<c:if test="${empty command.searchResults}">
+			<c:if test="${not empty searchValue}">
+				<label for="_SearchValue_id">${searchLabel}</label>
+				<span style="font-weight: bold; margin-right: 20px;" id="_SearchValue_id">
+				<c:out value="${searchValue}"/></span>
+			</c:if>
+			<c:if test="${empty searchValue}">
+				<label for="_searchText_id">${searchLabel}</label>
+			</c:if>
+			<form:input id="_searchText_id" path="searchText"/>
+			<button id="search_button" name="search" value="organisation,${searchEntity},${searchSeq}" type="submit">Search</button>
+			<form:errors cssClass="errors" path="searchText"/>
+			<br/>
+			<input type="hidden" id="_currentValue_id" name="${searchPath}" value="${searchValueId}"/>
+		</c:if>
+		<c:if test="${not empty command.searchResults}">
+			<c:if test="${command.searchSeq == searchSeq}">
+		
+				<label for="_searchText_id">${searchLabel}</label>
+				<form:select id="_searchResults_id"
+					path="${searchPath}" onchange="checkNotFound(this);">
+					<form:option value="">Select...</form:option>
+					<form:options items="${command.searchResults}" itemValue="id"/>
+					<form:option value="-1">(not in list)</form:option>
+				</form:select>
+				<button name="save" value="" type="submit">Save</button>
+				<!-- a href="http://www.yourweblog.com/yourfile.html" onclick="window.open('http://www.yourweblog.com/yourfile.html','popup','width=500,height=500,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false">About</a-->
+				<input type="hidden" id="_currentValue_id" name="${searchPath}" value="${searchValueId}"/>
+			</c:if>
+			
+			<form:input cssStyle="margin-left: 20px;"  id="_searchText_id" path="searchText"/>
+			<button id="search_button" name="search" value="organisation,${searchEntity},${searchSeq}" type="submit">Search</button>
+			<form:errors cssClass="errors" path="searchText"/>
+			<br/>
+			<c:if test="${command.searchSeq != searchSeq}">
+				<label for="_SearchValue_id">${searchLabel}</label>
+				<span style="font-weight: bold; margin-right: 20px;" id="_SearchValue_id">
+				<c:out value="${searchValue}"/></span>
+			</c:if>
+		</c:if>
+	</c:if>
+	<script type="text/javascript">
+		function checkNotFound(element) {
+			if(element.value=="-1") {
+				document.getElementById("_searchText_id").value="%create%";
+				document.getElementById("_currentValue_id").value="-1";				
+				document.getElementById("search_button").click();
+			}
+		}
+
+		if(${nothingFound == searchSeq}) {
+			if(confirm("Nothing found for search. Add a new record?")) {
+				document.getElementById("_searchText_id").value="%create%";
+				document.getElementById("_currentValue_id").value="-1";				
+				document.getElementById("search_button").click();
+			}
+		}
+	</script>
+</div>

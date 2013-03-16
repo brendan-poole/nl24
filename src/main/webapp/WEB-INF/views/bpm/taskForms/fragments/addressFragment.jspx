@@ -1,0 +1,46 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+
+				<label for="_houseName_id">House name</label>
+				<form:input id="_houseName_id" path="${addressPath}.houseName"
+					cssClass="width200px" />
+				<form:errors cssClass="errors" path="${addressPath}.houseName"/>
+				<br/>
+				<label for="_houseName_id">House number</label>
+				<form:input id="_houseNumber_id" path="${addressPath}.houseNumber"
+					cssClass="width200px" />
+				<form:errors cssClass="errors" path="${addressPath}.houseNumber"/>
+				<br/>
+				<label for="_street1_id">Street 1</label>
+				<form:input id="_street1_id" path="${addressPath}.street1"
+					cssClass="width200px" />
+				<form:errors cssClass="errors" path="${addressPath}.street1"/>
+				<br/>
+				<label for="_street2_id">Street 2</label>
+				<form:input id="_street2_id" path="${addressPath}.street2"
+					cssClass="width200px" />
+				<form:errors cssClass="errors" path="${addressPath}.street2"/>
+				<br/>
+				<label for="_district_id">District</label>
+				<form:input id="_district_id" path="${addressPath}.district"
+					cssClass="width200px" />
+				<form:errors cssClass="errors" path="${addressPath}.district"/>
+				<br/>
+				<label for="_city_id">City</label>
+				<form:input id="_city_id" path="${addressPath}.city"
+					cssClass="width200px" />
+				<form:errors cssClass="errors" path="${addressPath}.city"/>
+				<br/>
+				<label for="_county_id">County</label>
+				<form:input id="_county_id" path="${addressPath}.county"
+					cssClass="width200px" />
+				<form:errors cssClass="errors" path="${addressPath}.county"/>
+				<br/>
+				<label for="_postcode_id">Postcode</label>
+				<form:input id="_postcode_id" path="${addressPath}.postcode"
+					cssClass="width200px" />
+				<form:errors cssClass="errors" path="${addressPath}.postcode"/>
+				<br/>
+</div>

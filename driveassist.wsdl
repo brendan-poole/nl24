@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.driveassist.co.uk/Import/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Import" targetNamespace="http://www.driveassist.co.uk/Import/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.driveassist.co.uk/Import/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="Import">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="UserName" type="xsd:string" />
+      			<xsd:element name="Password" type="xsd:string"></xsd:element>
+      			<xsd:element name="Data" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ImportResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ImportRequest">
+  	<wsdl:part element="tns:Import" name="parameters" />
+  </wsdl:message>
+  <wsdl:message name="ImportResponse">
+    <wsdl:part element="tns:ImportResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="Import">
+    <wsdl:operation name="Importt">
+      <wsdl:input message="tns:ImportRequest" />
+      <wsdl:output message="tns:ImportResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ImportSOAP" type="tns:Import">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Importt">
+      <soap:operation soapAction="http://www.driveassist.co.uk/Import/NewOperation"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Import">
+    <wsdl:port binding="tns:ImportSOAP" name="ImportSOAP">
+      <soap:address location="https://magma.driveassist.co.uk:9443/DAServicesTest/Import"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

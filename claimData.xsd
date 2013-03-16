@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" 
+  xmlns:nl="http://nl24.co.uk/schemas" targetNamespace="http://nl24.co.uk/schemas">
+    <xs:complexType name="claimType">
+      <xs:sequence>
+        <xs:element name="accident" type="nl:accidentType"/>
+        <xs:element name="broker" type="nl:brokerType"/>
+        <xs:element name="brokerPolicyNumber" type="xs:NCName"/>
+        <xs:element name="client" type="nl:clientType"/>
+        <xs:element name="creditServiceProviderInstruction" type="nl:creditServiceProviderInstructionType"/>
+        <xs:element name="policeAttendance" type="nl:policeAttendanceType"/>
+        <!--xs:element ref="solicitorInstruction"/-->
+        <xs:element name="thirdParty" type="nl:thirdPartyType"/>
+        <xs:element name="witnesses" type="nl:witnessType"/>
+      </xs:sequence>
+    </xs:complexType>
+  <xs:complexType name="accidentType">
+      <xs:sequence>
+        <xs:element name="accidentChangingLanes" type="xs:boolean"/>
+        <xs:element name="accidentCircumstances" type="xs:NCName"/>
+        <xs:element name="accidentDate" type="xs:dateTime"/>
+        <xs:element name="accidentInCarPark" type="xs:boolean"/>
+        <xs:element name="accidentOnRoundabout" type="xs:boolean"/>
+        <xs:element name="claimantCollectedLocation" type="xs:NCName"/>
+        <xs:element name="claimantPositionInVehicle" type="xs:NCName"/>
+        <xs:element name="concertinaCollision" type="xs:boolean"/>
+        <xs:element name="country" type="xs:NCName"/>
+        <xs:element name="dry" type="xs:boolean"/>
+        <xs:element name="ice" type="xs:boolean"/>
+        <xs:element name="journeyDuration" type="xs:NCName"/>
+        <xs:element name="location" type="xs:NCName"/>
+        <xs:element name="mud" type="xs:boolean"/>
+        <xs:element name="oil" type="xs:boolean"/>
+        <xs:element name="policeReported" type="xs:boolean"/>
+        <xs:element name="purposeOfJourney" type="xs:NCName"/>
+        <xs:element name="roadName" type="xs:NCName"/>
+        <xs:element name="snow" type="xs:boolean"/>
+        <xs:element name="town" type="xs:NCName"/>
+        <xs:element name="vehicleDamage" type="nl:vehicleDamageType"/>
+        <xs:element name="vehicleHitInRear" type="xs:boolean"/>
+        <xs:element name="vehicleHitSide" type="xs:boolean"/>
+        <xs:element name="vehicleHitWhilstParked" type="xs:boolean"/>
+        <xs:element name="weatherFog" type="xs:boolean"/>
+        <xs:element name="weatherIce" type="xs:boolean"/>
+        <xs:element name="weatherRain" type="xs:boolean"/>
+        <xs:element name="weatherSnow" type="xs:boolean"/>
+        <xs:element name="weatherSun" type="xs:boolean"/>
+        <xs:element name="wet" type="xs:boolean"/>
+      </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="vehicleDamageType">
+      <xs:sequence>
+        <xs:element name="anyDamageToBackLights" type="xs:boolean"/>
+        <xs:element name="anyDamageToLights" type="xs:boolean"/>
+        <xs:element name="anyFluidCommingFromVehicle" type="xs:boolean"/>
+        <xs:element name="anyWater" type="xs:boolean"/>
+        <xs:element name="anyWindowsBroken" type="xs:boolean"/>
+        <xs:element name="anythingHangingOffVehicle" type="xs:boolean"/>
+        <xs:element name="vehicleUnsecure" type="xs:boolean"/>
+        <xs:element name="wheelsOnAndStraight" type="xs:boolean"/>
+      </xs:sequence>
+    </xs:complexType>
+
+  <xs:complexType name="brokerType">
+    <xs:sequence>
+      <xs:element name="code" type="xs:NCName"/>
+      <xs:element name="defaultCreditServiceProvider" type="nl:creditServiceProviderType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+    <xs:complexType name="creditServiceProviderType">
+      <xs:sequence>
+        <xs:element name="name" type="xs:string"/>
+        <xs:element name="userGroup" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="clientType">
+      <xs:complexContent>
+        <xs:extension base="nl:contactType">
+          <xs:sequence>
+            <xs:element name="injury" type="nl:injuryType"/>
+            <xs:element name="insurancePolicyNumber" type="xs:string"/>
+            <xs:element name="passengers" type="nl:passengersType"/>
+            <xs:element name="vehicle" type="nl:vehicleType"/>
+            <xs:element name="accessToOtherVehicle" type="xs:boolean"/>
+            <xs:element name="nationalInsuranceNumber" type="xs:string"/>
+            <xs:element name="reasonNoNationalInsuranceNumber" type="xs:NCName"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="creditServiceProviderInstructionType">
+      <xs:sequence>
+        <xs:element name="creditServiceProvider" type="nl:creditServiceProviderType"/>
+      </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="policeAttendanceType">
+      <xs:sequence>
+        <xs:element name="comments" type="xs:NCName"/>
+        <xs:element name="referenceNumber" type="xs:NCName"/>
+        <xs:element name="reportingOfficerName" type="xs:NCName"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="thirdPartyType">
+      <xs:complexContent>
+        <xs:extension base="nl:contactType">
+          <xs:sequence>
+            <xs:element name="injury" type="nl:injuryType"/>
+            <xs:element name="insurancePolicyNumber" type="xs:string"/>
+            <xs:element name="passengers" type="nl:passengersType"/>
+            <xs:element name="vehicle" type="nl:vehicleType"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="witnessType">
+      <xs:sequence>
+        <xs:element name="witness" type="nl:contactType"/>
+      </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="contactType">
+      <xs:sequence>
+          <xs:element name="address" type="nl:addressType"/>
+          <xs:element name="email" type="xs:string"/>
+          <xs:element name="dateOfBirth" type="xs:dateTime"/>
+          <xs:element name="forename" type="xs:NCName"/>
+          <xs:element name="homeTelephone" type="xs:NMTOKEN"/>
+          <xs:element name="mobileTelephone" type="xs:NMTOKEN"/>
+          <xs:element name="surname" type="xs:NCName"/>
+          <xs:element name="title" type="xs:NCName"/>
+          <xs:element name="workTelephone" type="xs:NMTOKEN"/>
+      </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="addressType">
+      <xs:sequence>
+        <xs:element name="city" type="xs:NCName"/>
+        <xs:element name="county" type="xs:NCName"/>
+        <xs:element name="district" type="xs:NCName"/>
+        <xs:element name="houseName" type="xs:NCName"/>
+        <xs:element name="houseNumber" type="xs:NCName"/>
+        <xs:element name="postcode" type="xs:NCName"/>
+        <xs:element name="street1" type="xs:NCName"/>
+        <xs:element name="street2" type="xs:NCName"/>
+      </xs:sequence>
+    </xs:complexType>
+  
+    <xs:complexType name="injuryType">
+      <xs:sequence>
+        <xs:element name="bone" type="xs:boolean"/>
+        <xs:element name="daysDetained" type="xs:integer"/>
+        <xs:element name="injuryArea" type="xs:NCName"/>
+        <xs:element name="medicalAttentionSought" type="xs:boolean"/>
+        <xs:element name="other" type="xs:boolean"/>
+        <xs:element name="softTissue" type="xs:boolean"/>
+        <xs:element name="whiplash" type="xs:boolean"/>
+      </xs:sequence>
+    </xs:complexType>
+  
+    <xs:complexType name="passengersType">
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="passenger" type="nl:passengerType"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="passengerType">
+      <xs:complexContent>
+        <xs:extension base="nl:contactType">
+          <xs:sequence>
+            <xs:element name="injured" type="xs:boolean"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  <xs:complexType  name="vehicleType">
+      <xs:sequence>
+        <xs:element name="colour" type="xs:NCName"/>
+        <xs:element name="engineSize" type="xs:NCName"/>
+        <xs:element name="make" type="xs:NCName"/>
+        <xs:element name="model" type="xs:NCName"/>
+        <xs:element name="vehicleType" type="xs:NCName"/>
+        <xs:element name="vrn" type="xs:NCName"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="witnessesType">
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="witness" type="nl:witnessType"/>
+      </xs:sequence>
+    </xs:complexType>
+</xs:schema>

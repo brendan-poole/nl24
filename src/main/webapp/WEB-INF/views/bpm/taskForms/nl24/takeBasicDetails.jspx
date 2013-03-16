@@ -1,0 +1,57 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<c:if test="${command.currentPage == 'client'}">
+			<c:set var="clientSelected" value="selectedtab"/>
+		</c:if>
+		<c:if test="${command.currentPage == 'client.vehicle'}">
+			<c:set var="clientVehicleSelected" value="selectedtab"/>
+		</c:if>
+		<c:if test="${command.currentPage == 'broker'}">
+			<c:set var="brokerSelected" value="selectedtab"/>
+		</c:if>
+		<li id="${clientSelected}"><button class="tabbutton" name="page" value="client">Client</button></li>
+		<li id="${clientVehicleSelected}"><button class="tabbutton" name="page" value="client.vehicle">Vehicle</button></li>
+		<li id="${brokerSelected}"><button class="tabbutton" name="page" value="broker">Broker/insurer</button></li>
+	</ul>
+	<div class="tabcontent">
+	<c:if test="${command.currentPage == 'client' or empty command.currentPage}">
+				<c:set var="contactPath" scope="request" value="processInstance.data.client.contact"/>
+				<jsp:include page="fragments/contactFragment.jspx"/>
+
+				<label for="_dateOfBirth_id">Date of birth</label>
+				<form:input id="_dateOfBirth_id" path="processInstance.data.client.contact.dateOfBirth"
+					cssClass="width200px" /> (dd/mm/yyyy)
+				
+				<form:errors cssClass="errors" path="processInstance.data.client.contact.dateOfBirth"/>
+				<br/>
+				<label for="_nationalInsuranceNumber_id">National insurance number</label>
+				<form:input id="_nationalInsuranceNumber_id" path="processInstance.data.client.nationalInsuranceNumber"
+					cssClass="width200px" />
+				<br/>
+				<label for="_reasonNoNationInsuranceNumber_id">Reason for no national insurance number</label>
+				<form:input id="_reasonNoNationInsuranceNumber_id" path="processInstance.data.client.reasonNoNationalInsuranceNumber"
+					cssClass="width200px" />
+				<br/>
+	</c:if>
+	<c:if test="${command.currentPage == 'client.vehicle'}">
+		<c:set var="vehiclePath" scope="request" value="processInstance.data.client.vehicle"/>
+		<jsp:include page="fragments/vehicleFragment.jspx"/>
+	</c:if>
+	<c:if test="${command.currentPage == 'broker'}">
+				<label for="_brokerPolicyNumber_id">Broker policy number</label>
+				<form:input id="_brokerPolicyNumber_id" path="processInstance.data.brokerPolicyNumber"
+					cssClass="width200px" />
+				<form:errors cssClass="errors" path="processInstance.data.brokerPolicyNumber"/>
+				<br />
+				<label for="_insurancePolicyNumber_id">Insurance policy number</label>
+				<form:input id="_insurancePolicyNumber_id" path="processInstance.data.client.insurancePolicyNumber"
+					cssClass="width200px" />
+				<form:errors cssClass="errors" path="processInstance.data.client.insurancePolicyNumber"/>
+				<br />
+	</c:if>
+		<div style="float:inherit; clear: both; height: 0px;"/>
+	</div>
+</div>

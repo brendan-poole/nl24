@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="  http://www.springframework.org/schema/aop   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd     http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd     http://www.springframework.org/schema/context   http://www.springframework.org/schema/context/spring-context-3.0.xsd     http://www.springframework.org/schema/jee   http://www.springframework.org/schema/jee/spring-jee-3.0.xsd     http://www.springframework.org/schema/tx   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<bean id="fnolProcessDefinition0_5" class="newlaw.bpm.processdefinition.ProcessDefinition" init-method="init">
+		<property name="name" value="NL24 Claim" />
+		<property name="code" value="nl24" />
+		<property name="service" ref="fnolService"/>
+		<property name="searchService" ref="nl24SearchService"/>		
+		<property name="reportService" ref="nl24ReportService"/>		
+		<property name="defaultActionHandler">
+			<bean class="newlaw.bpm.handler.ViewActionHandler"/>
+		</property>
+		<property name="swimlanes" ref="fnolSwimlanes1"/>
+		<property name="phases" ref="fnolPhases1"/>
+		
+	</bean>
+
+	<bean id="fnolService" class="nl24.bpm.Nl24ProcessInstanceService" init-method="initData">
+		<property name="repairersCoreHoursStart" value="09:00" />
+		<property name="repairersCoreHoursEnd" value="17:00" />
+	</bean>
+	
+	<bean id="nl24SearchService" class="nl24.bpm.search.Nl24SearchService"/>
+	
+	<bean id="nl24ReportService" class="nl24.report.Nl24ReportService">
+		<property name="reports">
+			<list>
+				<bean class="newlaw.bpm.report.Report">
+					<property name="name" value="Claims Portfolio"/>
+					<property name="code" value="claimPortfolio"/>
+					<property name="criteriaUrl" value="/reports/broker"/>
+				</bean>
+			</list>
+		</property>
+		<property name="keyDatesBetweenDatesByBrokerQuery"><value><![CDATA[
+			select %select from Nl24KeyDate a 
+			where (:broker = null or a.processInstance.data.broker=:broker) 
+				and a.phaseCode=:phase and a.transitionCode=:transition 
+				and a.triggered>=:start and a.triggered<=:end 
+				and a.id=(
+					select min(b.id) from Nl24KeyDate b 
+					where b.processInstance=a.processInstance 
+					and b.phaseCode=a.phaseCode and b.transitionCode=a.transitionCode
+				)
+		]]></value></property>
+	</bean>
+	
+	<bean id="driveAssistSendClaimHandler" class="nl24.integration.DriveAssistSendClaimHandler">
+		<property name="address" value="Helmont House,Churchill Way,Cardiff,CF10 2HE"/>
+		<property name="username" value="NewLaw"/>
+		<property name="password" value="cgD67HGT"/>
+	</bean>
+	<bean id="xmlEmailSendClaimHandler" class="nl24.integration.XmlEmailSendClaimHandler"/>
+	
+	
+</beans>

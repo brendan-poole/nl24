@@ -1,0 +1,71 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<c:if test="${command.currentPage == 'accidentOverview'}">
+			<c:set var="accidentOverviewSelected" value="selectedtab"/>
+		</c:if>
+		<c:if test="${command.currentPage == 'police'}">
+			<c:set var="policeSelected" value="selectedtab"/>
+		</c:if>
+		<c:if test="${command.currentPage == 'thirdParty.vehicle'}">
+			<c:set var="thirdPartyVehicleSelected" value="selectedtab"/>
+		</c:if>
+		<c:if test="${command.currentPage == 'client.vehicle'}">
+			<c:set var="clientVehicleSelected" value="selectedtab"/>
+		</c:if>
+		<c:if test="${command.currentPage == 'witnesses'}">
+			<c:set var="witnessesSelected" value="selectedtab"/>
+		</c:if>
+		<c:if test="${command.currentPage == 'client.injury'}">
+			<c:set var="clientInjurySelected" value="selectedtab"/>
+		</c:if>
+		<c:if test="${command.currentPage == 'client.otherVehicle'}">
+			<c:set var="clientOtherVehicleSelected" value="selectedtab"/>
+		</c:if>
+		<li id="${accidentOverviewSelected}"><button class="tabbutton" name="page" value="accidentOverview">Accident Overview</button></li>
+		<li id="${policeSelected}"><button class="tabbutton" name="page" value="police">Police</button></li>
+		<!-- li id="${clientVehicleSelected}"><button class="tabbutton" name="page" value="client.vehicle">Vehicle</button></li-->
+		<li id="${thirdPartyVehicleSelected}"><button class="tabbutton" name="page" value="thirdParty.vehicle">TP vehicle</button></li>
+		<li id="${witnessesSelected}"><button class="tabbutton" name="page" value="witnesses">Witnesses</button></li>
+		<li id="${clientInjurySelected}"><button class="tabbutton" name="page" value="client.injury">Injury</button></li>
+		<li id="${clientOtherVehicleSelected}"><button class="tabbutton" name="page" value="client.otherVehicle">Other vehicle</button></li>
+	</ul>
+	<div class="tabcontent">
+	<c:if test="${command.currentPage == 'accidentOverview'}">
+		<jsp:include page="takeFullDetailsFragments/accidentOverviewFragment.jspx"/>
+	</c:if>
+	<c:if test="${command.currentPage == 'police'}">
+		<jsp:include page="takeFullDetailsFragments/policeFragment.jspx"/>
+	</c:if>
+	<c:if test="${command.currentPage == 'client.vehicle'}">
+		<c:set var="vehiclePath" scope="request" value="processInstance.data.client.vehicle"/>
+		<jsp:include page="fragments/vehicleFragment.jspx"/>
+	</c:if>	
+	<c:if test="${command.currentPage == 'thirdParty.vehicle'}">
+		<c:set var="vehiclePath" scope="request" value="processInstance.data.thirdParty.vehicle"/>
+		<jsp:include page="fragments/vehicleFragment.jspx"/>
+	</c:if>	
+	<c:if test="${command.currentPage == 'witnesses'}">
+		<jsp:include page="takeFullDetailsFragments/witnessesFragment.jspx"/>
+	</c:if>
+	<c:if test="${command.currentPage == 'client.injury'}">
+		<jsp:include page="takeFullDetailsFragments/injuryFragment.jspx"/>
+	</c:if>	
+	<c:if test="${command.currentPage == 'client.otherVehicle'}">
+		<label for="_accessToOtherVehicle_id">Do you have FULL TIME access to another vehicle?</label>
+		<form:select id="_accessToOtherVehicle_id"
+			path="processInstance.data.client.accessToOtherVehicle">
+			<form:option value=""></form:option>
+			<form:option value="true">Yes</form:option>
+			<form:option value="false">No</form:option>
+		</form:select>
+		<form:errors cssClass="errors" path="processInstance.data.client.accessToOtherVehicle"/>
+		<br/>
+
+	</c:if>	
+		<div style="float:inherit; clear: both; height: 0px;"/>
+	
+	</div>
+</div>

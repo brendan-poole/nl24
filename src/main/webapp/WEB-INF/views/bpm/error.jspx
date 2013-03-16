@@ -1,0 +1,19 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<jsp:output omit-xml-declaration="yes" />
+	<spring:url value="/" var="form_url" />
+	<form:form action="${form_url}" method="POST" modelAttribute="command" enctype="multipart/form-data">
+	Sorry but an error occurred from which we are not able to recover. Please provide IT with the following information:<br/>
+	<form:errors cssClass="errors" delimiter="&lt;p/&gt;" />
+	<br/>
+	
+	<c:if test="${command.processInstance.id != null}">	
+		<spring:url var="pi_url" value="/pi/${command.processInstance.id}"/>
+		To view the case <a href="${pi_url}">click here</a>.
+	</c:if>
+	
+	</form:form>
+</div>
+	

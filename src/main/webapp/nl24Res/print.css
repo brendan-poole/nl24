@@ -1,0 +1,89 @@
+body,div,p,input,select,table,tr,td,fieldset,legend
+{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:8pt;
+	color:#000000;
+}
+.Testo_Output,.View_Table_Title
+{
+	font-weight: bold;
+}
+.Testo_Output_small
+{
+	font-size:7pt;
+}
+.LeftColumn
+{ 
+	width:20%; 
+}
+.RightColumn
+{ 
+	width:30%; 
+}
+.View_Table_Title
+{
+	FONT-SIZE: 8pt;
+}
+.View_Table_Text_small
+{
+	font-size:7pt;
+}
+.View_Table_Title_small
+{
+	font-size:7pt;
+	FONT-WEIGHT: bold;
+}
+.table_separator,.blocco_footer,.blocco_header,.testo_titolo ,.blocco_header_ombra ,.NoPrint ,.View_Submit,.View_ExitButton
+{
+	display:none;
+}
+.View_ExitButton
+{
+	background:#FFFFFF;
+	border:0px;
+	text-align:left;
+	text-decoration:underline;	
+}
+fieldset
+{
+	margin-bottom:15pt;
+}
+legend
+{
+	font-weight:bold;
+	font-size:11pt;
+}
+.PrintFirstGroupTitle
+{
+	font-weight:bold;
+	font-size:13pt;
+	border-bottom:1pt solid black;
+	margin-bottom:15pt;
+	width:100%;
+}
+.PrintGroupTitle
+{
+	font-weight:bold;
+	font-size:13pt;
+	border-bottom:1pt solid black;
+	margin-bottom:15pt;
+	width:100%;
+}
+
+.MandatoryField {
+	BACKGROUND: #CCCCCC; }
+.OptionalField {
+	BACKGROUND: #FFFFFF; }
+
+.width10px { WIDTH: 10px }
+.width25px { WIDTH: 25px }
+.width50px { WIDTH: 50px }
+.width75px { WIDTH: 75px }
+.width100px { WIDTH: 100px }
+.width150px { WIDTH: 150px }
+.width200px { WIDTH: 200px }
+.width250px { WIDTH: 250px }
+.width25perc { WIDTH: 25% }
+.width50perc { WIDTH: 50% }
+.width75perc { WIDTH: 75% }
+.width100perc { WIDTH: 100% }

@@ -1,0 +1,26 @@
+<div  xmlns:c="http://java.sun.com/jsp/jstl/core"
+ 	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+		<div style="float: left; width: 50%">	
+			<label for="_name_id">Name</label>
+			<form:input id="_name_id" path="${contactPath}.name"
+				cssClass="width200px" />
+			<form:errors cssClass="errors" path="${contactPath}.name"/>
+			<br/>
+			<label for="_telephone_id">Telephone</label>
+			<form:input id="_telephone_id" path="${contactPath}.telephone"
+				cssClass="width200px" />
+			<form:errors cssClass="errors" path="${contactPath}.telephone"/>
+			<br/>
+			<label for="_email_id">Email</label>
+			<form:input id="_email_id" path="${contactPath}.email"
+				cssClass="width200px" />
+			<form:errors cssClass="errors" path="${contactPath}.email"/>
+			<br/>
+		</div>
+		<div style="float: left; width: 50%">	
+			<c:set var="addressPath" scope="request" value="${contactPath}.address"/>
+			<jsp:include page="../fragments/addressFragment.jspx"/>
+		</div>
+</div>

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+<util:set id="dapPhases1">
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="start"/>
+		<property name="name" value="Start"/>
+		<property name="actionHandler">
+			<bean class="newlaw.bpm.handler.StartActionHandler"/>	
+		</property>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="started" />
+					<property name="name" value="Started" />
+					<property name="toPhaseCode" value="newDapRequest"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="newDapRequest"/>
+		<property name="name" value="New DAP request"/>
+		<property name="swimlaneCode" value="initiator"/>
+		<property name="defaultPage" value="dapRequest"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="completed" />
+					<property name="name" value="Completed" />
+					<property name="toPhaseCode" value="newRequestAssignSwimlanes"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="newRequestAssignSwimlanes"/>
+		<property name="name" value="Assign new request swimlanes"/>
+		<property name="swimlaneCode" value="initiator"/>
+		<property name="actionHandler">
+			<bean class="newlaw.dap.AssignSwimlanesActionHandler"/>
+		</property>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="completed" />
+					<property name="name" value="Completed" />
+					<property name="toPhaseCode" value="reviewNewDapRequest"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="reviewNewDapRequest"/>
+		<property name="name" value="Review new DAP request"/>
+		<property name="swimlaneCode" value="training"/>
+		<property name="defaultPage" value="dapRequest"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete" />
+					<property name="name" value="Complete" />
+					<property name="toPhaseCode" value="assignAuditor"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="assignAuditor"/>
+		<property name="name" value="Assign auditor"/>
+		<property name="swimlaneCode" value="training"/>
+		<property name="actionHandler">
+			<bean class="newlaw.dap.AssignAuditorActionHandler"/>
+		</property>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete" />
+					<property name="name" value="Complete" />
+					<property name="toPhaseCode" value="sendDapPackToAuditor"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="sendDapPackToAuditor"/>
+		<property name="name" value="Send DAP pack to auditor"/>
+		<property name="defaultPage" value="dapPack"/>
+		<property name="swimlaneCode" value="training"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="sent" />
+					<property name="name" value="Sent" />
+					<property name="toPhaseCode" value="awaitAuditorReport,completeAudit"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="awaitAuditorReport"/>
+		<property name="name" value="Await auditors report"/>
+		<property name="swimlaneCode" value="training"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="chased" />
+					<property name="name" value="Chased" />
+					<property name="toPhaseCode" value="awaitAuditorReport"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="completeAudit"/>
+		<property name="name" value="Complete audit"/>
+		<property name="swimlaneCode" value="auditor"/>
+		<property name="defaultPage" value="auditorsReport"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="reportSentToTraining" />
+					<property name="name" value="Report sent to training" />
+					<property name="toPhaseCode" value="copyReportToComplianceAndHr"/>
+					<property name="invalidatePhases" value="awaitAuditorReport"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="copyReportToComplianceAndHr"/>
+		<property name="name" value="Provide Compliance and HR with copy of report"/>
+		<property name="swimlaneCode" value="training"/>
+		<property name="defaultPage" value="auditorsReport"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="sent" />
+					<property name="name" value="Sent" />
+					<property name="toPhaseCode" value="hrAcknowledgeReportReceipt,complianceAcknowledgeReportReceipt,deviseTrainingPlan"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="hrAcknowledgeReportReceipt"/>
+		<property name="name" value="Acknowledge receipt of report"/>
+		<property name="swimlaneCode" value="humanResources"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="sent" />
+					<property name="name" value="Sent" />
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="complianceAcknowledgeReportReceipt"/>
+		<property name="name" value="Acknowledge receipt of report"/>
+		<property name="swimlaneCode" value="compliance"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="sent" />
+					<property name="name" value="Sent" />
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="deviseTrainingPlan"/>
+		<property name="name" value="Devise training plan"/>
+		<property name="defaultPage" value="deviseTrainingPlan"/>
+		<property name="swimlaneCode" value="training"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="completed" />
+					<property name="name" value="Completed" />
+					<property name="toPhaseCode" value="completeTraining,awaitTrainingCompletion"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="awaitTrainingCompletion"/>
+		<property name="name" value="Await training completion"/>
+		<property name="swimlaneCode" value="training"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="chase" />
+					<property name="name" value="Chase training completion" />
+					<property name="toPhaseCode" value="awaitTrainingCompletion"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="completeTraining"/>
+		<property name="name" value="Complete training"/>
+		<property name="swimlaneCode" value="manager"/>
+		<property name="defaultPage" value="trainingNotes"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="trainingDetailsToAuditor" />
+					<property name="name" value="Training details sent to auditor" />
+					<property name="toPhaseCode" value="completeTrainingAudit"/>
+					<property name="invalidatePhases" value="awaitTrainingCompletion"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="awaitTrainingAuditReport"/>
+		<property name="name" value="Complete training audit"/>
+		<property name="swimlaneCode" value="manager"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="chased" />
+					<property name="name" value="Chased" />
+					<property name="toPhaseCode" value="awaitTrainingAuditReport"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="completeTrainingAudit"/>
+		<property name="name" value="Complete training audit"/>
+		<property name="swimlaneCode" value="auditor"/>
+		<property name="defaultPage" value="auditorsTrainingReport"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="trainingAuditReportToManager" />
+					<property name="name" value="Report sent to manager" />
+					<property name="toPhaseCode" value="trainingAuditReportReceived"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="trainingAuditReportReceived"/>
+		<property name="name" value="Training report received - confirm whether further action is required"/>
+		<property name="defaultPage" value="trainingAuditReport"/>
+		<property name="swimlaneCode" value="manager"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="furtherActionRequired" />
+					<property name="name" value="Further action required" />
+					<property name="toPhaseCode" value="confirmFirstRequest"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="furtherActionNotRequired" />
+					<property name="name" value="Further action NOT required" />
+					<property name="toPhaseCode" value="end"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="confirmFirstRequest"/>
+		<property name="name" value="Confirm whether first request"/>
+		<property name="swimlaneCode" value="manager"/>
+		<property name="actionHandler">
+			<bean class="newlaw.dap.ConfirmFirstRequestActionHandler"/>
+		</property>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="firstRequest" />
+					<property name="name" value="First request" />
+					<property name="toPhaseCode" value="reviewNewDapRequest"/>
+				</bean>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="secondRequest" />
+					<property name="name" value="Invoke formal management programme" />
+					<property name="toPhaseCode" value="invokeFormalManagementProgramme"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="invokeFormalManagementProgramme"/>
+		<property name="name" value="Invoke formal management programme"/>
+		<property name="swimlaneCode" value="manager"/>
+		<property name="transitions">
+			<set>
+				<bean class="newlaw.bpm.transition.Transition">
+					<property name="code" value="complete" />
+					<property name="name" value="Complete" />
+					<property name="toPhaseCode" value="end"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean class="newlaw.bpm.phase.Phase">
+		<property name="code" value="end"/>
+		<property name="name" value="Complete"/>
+		<property name="swimlaneCode" value="training"/>
+		<property name="transitions">
+			<set>
+			</set>
+		</property>
+	</bean>
+	
+</util:set>
+</beans>

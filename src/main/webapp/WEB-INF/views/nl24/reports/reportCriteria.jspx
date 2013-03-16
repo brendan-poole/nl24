@@ -1,0 +1,33 @@
+<div xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" 
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<jsp:output omit-xml-declaration="yes" />
+	
+ 	<spring:url value="/resources/images/nl24_logo.png" var="nl24logo" />
+	<img style="float:right;" alt="NL24" src="${nl24logo}"/>
+	<spring:url value="/reports/broker/claimsPortfolio" var="form_url" />
+	<form:form action="${form_url}" method="GET">
+		<label for="_broker_id">Broker</label>
+		<form:select id="_broker_id" path="broker"
+			cssClass="width200px" >
+			<form:option value=""></form:option>
+			<form:options  itemValue="id" items="${brokers}"/>
+		</form:select>
+		
+		<form:errors cssClass="errors" path="broker"/>
+		<br/>
+		<label for="start_date_id">Start</label>
+		<form:input id="start_date_id" path="startDate"/>
+		<form:errors cssClass="errors" path="startDate"/>
+		<label for="end_date_id">End</label>
+		<br/>
+		<form:input id="end_date_id" path="endDate"/>
+		<form:errors cssClass="errors" path="endDate"/>
+		<br/>
+		<button type="submit">Submit</button>		
+	</form:form>
+	<div style="float:inherit; clear: both; height: 0px;"/>
+</div>

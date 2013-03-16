@@ -1,0 +1,44 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<c:if test="${command.currentPage == 'accidentCircumstances'}">
+			<c:set var="accidentCircumstancesSelected" value="selectedtab"/>
+		</c:if>
+		<c:if test="${command.currentPage == 'thirdParty.driver'}">
+			<c:set var="thirdPartyDriverSelected" value="selectedtab"/>
+		</c:if>
+		<c:if test="${command.currentPage == 'thirdParty.passengers'}">
+			<c:set var="thirdPartyPassengersSelected" value="selectedtab"/>
+		</c:if>
+		<c:if test="${command.currentPage == 'passengers'}">
+			<c:set var="passengersSelected" value="selectedtab"/>
+		</c:if>
+		<li id="${accidentCircumstancesSelected}"><button class="tabbutton" name="page" value="accidentCircumstances">Accident circumstances</button></li>
+		<li id="${thirdPartyDriverSelected}"><button class="tabbutton" name="page" value="thirdParty.driver">TP driver</button></li>
+		<li id="${thirdPartyPassengersSelected}"><button class="tabbutton" name="page" value="thirdParty.passengers">TP passengers</button></li>
+		<li id="${passengersSelected}"><button class="tabbutton" name="page" value="passengers">Client's passengers</button></li>
+	</ul>
+	<div class="tabcontent">
+	<c:if test="${command.currentPage == 'accidentCircumstances'}">
+		<jsp:include page="takeFullDetailsFragments/accidentCircumstancesFragment.jspx"/>
+	</c:if>
+	<c:if test="${command.currentPage == 'thirdParty.driver'}">
+		<jsp:include page="takeFullDetailsFragments/thirdPartyDriverFragment.jspx"/>
+	</c:if>
+	<c:if test="${command.currentPage == 'witnesses'}">
+		<jsp:include page="takeFullDetailsFragments/witnessesFragment.jspx"/>
+	</c:if>
+	<c:if test="${command.currentPage == 'thirdParty.passengers'}">
+		<jsp:include page="takeFullDetailsFragments/thirdPartyPassengersFragment.jspx"/>
+	</c:if>	
+	<c:if test="${command.currentPage == 'passengers'}">
+		<jsp:include page="takeFullDetailsFragments/passengersFragment.jspx"/>
+	</c:if>	
+		<div style="float:inherit; clear: both; height: 0px;"/>
+	
+	</div>
+	<br/>
+	<!-- div style="font-weight: bolder; color: red;">NOTE: !</div-->
+</div>

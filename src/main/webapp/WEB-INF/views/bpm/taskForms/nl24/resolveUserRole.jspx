@@ -1,0 +1,21 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<li id="selectedtab"><button class="tabbutton" name="page" value="dapRequest">DAP request</button></li>
+	</ul>
+	<div class="tabcontent">
+	<div style="width: 50%">
+	<c:if test="${command.currentPage == 'handler'}">
+		<c:set var="searchLabel" scope="request" value="Handler"/>
+		<c:set var="searchEntity" scope="request" value="Newlaw"/>
+		<c:set var="searchSeq" scope="request" value="1"/>
+		<c:set var="searchPath" scope="request" value="processInstance.transientVariables['fruHandler']"/>
+		<c:set var="searchValue" scope="request" value="${command.processInstance.transientVariables['fruHandler']}"/>
+		<jsp:include page="../fragments/userSearchFragment.jspx"/>
+	</c:if>
+	</div>
+	<div style="float:inherit; clear: both; height: 0px;"/>
+	</div>
+</div>

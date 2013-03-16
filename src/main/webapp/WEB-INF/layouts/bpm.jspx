@@ -1,0 +1,84 @@
+
+<html xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:tiles="http://tiles.apache.org/tags-tiles"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+	xmlns:sec="http://www.springframework.org/security/tags">
+<jsp:output doctype-root-element="HTML"
+	doctype-system="about:legacy-compat" />
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+<jsp:directive.page pageEncoding="UTF-8" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+
+<!--util:load-scripts /-->
+<spring:theme code="styleSheet" var="roo_css" />
+<spring:url value="/${roo_css}" var="roo_css_url" />
+<spring:url value="/resources/images/favicon.ico" var="favicon" />
+<spring:url value="/resources/scripts/jquery.js" var="jquery" />
+
+<spring:url value="/resources/zebra_datepicker/javascript/zebra_datepicker.js" var="zebra_datepicker" />
+<spring:url value="/resources/zebra_datepicker/css/zebra_datepicker.css" var="zebra_datepicker_css" />
+
+<link rel="stylesheet" href="${zebra_datepicker_css}" type="text/css"/>
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${roo_css_url}" />
+<link rel="SHORTCUT ICON" href="${favicon}" />
+
+<spring:message code="application_name" var="app_name"
+	htmlEscape="false" />
+<title>Welcome to NewLaw business processes</title>
+</head>
+<body>
+	<!-- script type="text/javascript" src="${jquery}" />
+	<script type="text/javascript" src="${zebra_datepicker}" /-->
+
+	<spring:url scope="request" value="/" var="dash_url" />
+	<spring:url value="/search" var="search_url" />
+	<div id="navwrapper">
+		<ul id="nav" class="floatleft">
+			<li><a href="${dash_url}">Dashboard</a></li>
+			<li><a href="${search_url }">Search</a></li>
+			<!-- c:if test="${not empty processDefinitions}">  
+			<li><a href="#">Reports</a>
+				<ul>
+					<c:forEach var="pd" items="${processDefinitions}">
+						<c:forEach var="rep" items="${pd.value.reportService.reports}">
+							<li><spring:url var="rep_url" value="${rep.criteriaUrl}" />
+								<a href="${rep_url }">${rep.name}</a></li>
+						</c:forEach>  
+					</c:forEach>  
+		    	<li class="menuseprator"/>  
+				</ul>
+			</li>
+		</c:if-->
+			<!--li><a class="current" href="#">Web</a></li-->
+		</ul>
+
+		<ul id="nav" class="floatright">
+			<sec:authorize access="isAuthenticated()">
+				<sec:authentication scope="request" var="username"
+					property="principal.username" />
+				<li><a href="#">${username }<span class="arrowdown">
+							▼</span></a>
+					<ul>
+						<li><spring:url var="logout"
+								value="/resources/j_spring_security_logout" /> <a
+							href="${logout}">Sign out</a></li>
+					</ul></li>
+			</sec:authorize>
+		</ul>
+		<br class="clear" />
+	</div>
+	<div id="wrapper">
+	<!-- marquee>TEST SYSTEM</marquee-->
+		<tiles:insertAttribute name="body" />
+		<br class="clear" />
+	</div>
+		<br class="clear" />
+	<div id="footer">&#169;2012 NL24</div>
+</body>
+</html>

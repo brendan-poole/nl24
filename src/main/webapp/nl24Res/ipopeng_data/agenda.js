@@ -1,0 +1,3 @@
+//////////////////// Agenda file for CalendarXP 9.0 /////////////////
+// This file is totally configurable. You may remove all the comments in this file to minimize the download size.
+/////////////////////////////////////////////////////////////////////

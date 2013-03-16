@@ -1,0 +1,43 @@
+<div xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" 
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<jsp:output omit-xml-declaration="yes" />
+	<spring:url value="/search" var="form_url" />
+	<form:form action="${form_url}" method="POST" modelAttribute="command">
+	<form:select path="searchProcessDefinition" onchange="document.getElementById('searchText_id').value=''; document.forms[0].submit();">
+		<form:options items="${processDefinitions}"/>
+	</form:select>
+
+	<c:if test="${not empty processDefinition}">
+		<form:select id="searchField_id" path="searchField">
+			<form:options items="${processDefinition.searchService.searchTypes}"/>
+		</form:select>
+	</c:if>
+	
+	<form:input id="searchText_id" path="searchText"/>
+	<button type="submit">Search</button>
+	</form:form>
+	<c:if test="${not empty searchResults}">
+		<table>
+			<tr>
+				<th>Ref</th>
+				<th>Client</th>
+				<th>Handler</th>
+				<th>Status</th>
+			</tr>
+			<c:forEach var="pi" items="${searchResults}">
+			<tr>
+				<spring:url var="pi_url" value="/pi/${pi.id}"/>
+				<td><a href="${pi_url}"><c:out value="${pi.reference}"/></a></td>
+				<td>${pi.mainContact.name}</td>
+				<td><c:out value="${pi.swimlaneAssignees['fruHandler']}"/></td>
+				<td>${pi.status}</td>
+			</tr>
+			</c:forEach>
+		</table>
+	</c:if>
+	<div style="float:inherit; clear: both; height: 0px;"/>
+</div>

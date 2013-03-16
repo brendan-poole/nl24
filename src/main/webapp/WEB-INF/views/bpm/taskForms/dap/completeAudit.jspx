@@ -1,0 +1,20 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<li id="selectedtab"><button class="tabbutton" name="page" value="auditorsReport">Auditor report</button></li>
+	</ul>
+	<div class="tabcontent">
+		<c:if test="${command.currentPage == 'auditorsReport'}">
+			Complete the audit report and attach it below.
+			<br/>
+			<br/>
+			<input type="hidden" name="fileCode" value="auditorsReport"/>
+			<form:label for="fileData" path="fileData">Report file</form:label>
+	        <form:input path="fileData" type="file"/>
+		</c:if>
+		
+		<div style="float:inherit; clear: both; height: 0px;"/>
+	</div>
+</div>

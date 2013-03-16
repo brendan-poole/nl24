@@ -1,0 +1,328 @@
+#wrapper {
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid #bbd;
+	border-radius: 10px;
+}
+
+.clear {
+	clear: both;
+	height: 0;
+	overflow: hidden;
+	float: none;
+}
+
+body {
+	margin: 0 auto;
+	font-family: Arial, sans-serif;
+	font-size: small;
+}
+
+#footer {
+	background: none repeat scroll 0% 0% rgb(241, 241, 255);
+	border: 1px solid #bbd;
+	text-align: center;
+	font-size: small;
+}
+
+.priority0 {
+	
+}
+
+.priority1 {
+	background-color: #fcc;
+}
+
+.priority2 {
+	text-decoration: blink;
+	background-color: #f00;
+}
+
+input,select,textarea {
+	border-radius: 2px;
+	margin: 2px;
+	border: 1px solid #aaa;
+	float: none;
+}
+
+.roInput {
+	float: left;
+	margin: 2px;
+}
+
+.errors {
+	float: none;
+	margin-left: 10px;
+	color: red;
+}
+
+label {
+	width: 150px;
+	float: left;
+	margin-left: 5px;
+	margin-top: 0px;
+	clear: left;
+}
+
+#worklist {
+	float: right;
+}
+
+#actions {
+	background: none repeat scroll 0% 0% rgb(241, 241, 255);
+	border: 1px solid #bbd;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+h1 {
+	font-size: 20px;
+	font-weight: normal;
+	color: rgb(221, 55, 57);
+}
+
+.trans_button {
+	border: 1px solid rgb(48, 121, 237);
+	background-color: rgb(77, 144, 254);
+	background-image: -moz-linear-gradient(center top, rgb(77, 144, 254),
+		rgb(71, 135, 237) );
+	border-radius: 2px 2px 2px 2px;
+	color: rgb(255, 255, 255);
+	font-weight: bold;
+	padding: 0px 8px;
+	margin-right: 4px;
+}
+
+.start_button {
+	border: 1px solid rgb(0, 150, 0);
+	background-color: rgb(50, 220, 20);
+	background-image: -moz-linear-gradient(center top, rgb(50, 255, 20),
+		rgb(0, 200, 0) );
+	border-radius: 2px 2px 2px 2px;
+	color: rgb(255, 255, 255);
+	font-weight: bold;
+	padding: 0px 8px;
+	margin-right: 4px;
+}
+/*--navigation wrapper--*/
+#navwrapper {
+	margin: 0 auto;
+	background-color: #2D2D2D;
+}
+
+/* Google style menu */
+#nav {
+	font-weight: bold;
+	font-size: 13px;
+	padding-top: 4px;
+}
+
+#nav,#nav ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/*--main nav links style--*/
+#nav a {
+	display: block;
+	padding: 7px 7px 7px 7px;
+	color: #ccc;
+	text-decoration: none;
+}
+
+#nav a.dmenu {
+	
+}
+
+#nav a.dmenu:hover {
+	color: #3366CC !important;
+	background-color: #fff !important;
+}
+
+#nav li {
+	float: left;
+}
+
+#nav li {
+	position: relative;
+}
+
+/* hide from IE, mac */
+#nav li {
+	position: static;
+	width: auto;
+}
+/* end hiding from IE5 mac */
+
+/*--drop down menu styling--*/
+#nav li ul {
+	position: absolute;
+	display: none;
+	margin-left: -1px;
+	padding-bottom: 10px;
+	background-color: #FFFFFF;
+	border: 1px solid #bbb;
+	border-top: none;
+	-moz-box-shadow: 0 0 5px #ddd;
+	-webkit-box-shadow: 0 0 5px #ddd;
+	box-shadow: 0 0 5px #ddd;
+	/*--make it top of all the elements on page, so that it can be visible--*/
+	z-index: 5000;
+}
+
+#nav li:hover a,#nav a:focus,#nav a:active {
+	padding: 7px 7px 7px 7px;
+	color: #fff;
+	background: #444;
+	text-decoration: none;
+}
+
+#nav li ul,#nav ul li {
+	width: 10em;
+}
+
+/*--drop down menu styling is different from main nav, strict rule--*/
+#nav ul li a {
+	color: #3366CC !important;
+	border-right: 0;
+}
+
+#nav ul li a:hover {
+	color: #3366CC !important;
+	background-color: #eef3fb !important;
+	border-right: 0;
+}
+
+/*--the selected, current item in the navigation menu--*/
+#nav a.current {
+	color: #fff;
+	font-weight: bold;
+	background: #2D2D2D;
+	text-decoration: none;
+	border-top: 2px solid #C33;
+	padding-bottom: 5px; /*--removing 2px border from 7px padding--*/
+}
+
+#nav a.current:hover {
+	padding-bottom: 5px; /*--removing 2px border from 7px padding--*/
+}
+
+#nav li:hover ul {
+	display: block;
+}
+
+#nav li:hover ul a {
+	color: #000000;
+	background-color: transparent;
+}
+
+#nav ul a:hover {
+	background-color: #606060 !important;
+	color: #FFFFFF !important;
+}
+
+/*--used in drop down menu items--*/
+.menuseprator {
+	border-bottom: 1px solid #ddd;
+	margin: 10px 0 10px 0;
+}
+
+/*--for showing down arrow in drop down menu item--*/
+.arrowdown {
+	color: #eee;
+	font-size: 0.7em;
+}
+
+/*--for the left navigation menu--*/
+.floatleft {
+	float: left;
+}
+
+/*--for the right options navigation menu--*/
+.floatright {
+	float: right;
+}
+
+/* Alternate row highlights for tables */
+table.altrowstable {
+	color: #333333;
+	border-width: 1px;
+	border-color: #a9c6c9;
+	border-collapse: collapse;
+}
+
+table.altrowstable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+	font-weight: bold;
+}
+
+table.altrowstable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: rgb(241, 241, 255);
+}
+
+.oddrowcolor {
+	background-color: #ffffff;
+}
+
+.evenrowcolor {
+	background-color: rgb(241, 241, 255);
+}
+
+.basictab {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.basictab li {
+	float: left;
+	border: 1px solid #bbd;
+	border-bottom-width: 0;
+	margin: 0 0.14em;
+	display: block;
+	background: #eee;
+	padding: 0 0;
+	color: rgb(241, 241, 255);
+	text-align: center;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.basictab li:hover {
+	position: relative;
+	top: 1px;
+	background: white;
+	font-weight: bold;
+	border-color: #bbb;
+}
+
+.basictab #selectedtab {
+	position: relative;
+	top: 1px;
+	background: white;
+	border-color: #bbb;
+}
+
+.tabcontent {
+	border: 1px solid #bbd;
+	clear: both;
+	padding: 1em 1em;
+	border-radius: 5px;
+}
+
+.tabbutton {
+	background-color: transparent;
+	border: 0px;
+	width: 100%;
+	height: 100%;
+	padding: 0.24em 1em;
+	white-space: nowrap;
+}

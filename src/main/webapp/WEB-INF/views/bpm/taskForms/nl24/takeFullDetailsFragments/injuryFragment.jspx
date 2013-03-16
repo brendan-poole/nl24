@@ -1,0 +1,79 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	
+		<c:set var="injuryPath" value="processInstance.data.client.injury"/>
+	
+		<label for="_injured_id">Client injured?</label>
+		<form:select id="_injured_id"
+			path="processInstance.data.client.injured">
+			<form:option value=""></form:option>
+			<form:option value="true">Yes</form:option>
+			<form:option value="false">No</form:option>
+		</form:select>
+		<form:errors cssClass="errors" path="processInstance.data.client.injured"/>
+		<br/>
+		<label for="_injuryArea_id">Injury area</label>
+		<form:select id="_injuryArea_id" path="${injuryPath}.injuryArea" cssClass="width200px" >
+			<form:option value=""></form:option>
+			<form:options  items="${injuryAreas}"/>
+		</form:select>
+		<form:errors cssClass="errors" path="${injuryPath}.injuryArea"/>
+		<br/>		
+		<label for="_injuryArea_id">Injury type</label>
+		<form:select id="_injuryArea_id" path="${injuryPath}.injuryType" cssClass="width200px" >
+			<form:option value=""></form:option>
+			<form:options  items="${injuryTypes}"/>
+		</form:select>
+		<form:errors cssClass="errors" path="${injuryPath}.injuryType"/>
+		<br/>		
+		<label for="_medicalAttentionSought_id">Medical attention sought</label>
+		<form:select id="_medicalAttentionSought_id"
+			path="${injuryPath}.medicalAttentionSought">
+			<form:option value=""></form:option>
+			<form:option value="true">Yes</form:option>
+			<form:option value="false">No</form:option>
+		</form:select>
+		<br/>
+		<label for="_daysDetained_id">Days detained</label>
+		<form:input id="_daysDetained_id" path="${injuryPath}.daysDetained"/>
+		<br/>
+		<label for="_bone_id">Bone</label>
+		<form:select id="_bone_id"
+			path="${injuryPath}.bone">
+			<form:option value=""></form:option>
+			<form:option value="true">Yes</form:option>
+			<form:option value="false">No</form:option>
+		</form:select>
+		<br/>
+		<label for="_softTissue_id">Soft tissue</label>
+		<form:select id="_softTissue_id"
+			path="${injuryPath}.softTissue">
+			<form:option value=""></form:option>
+			<form:option value="true">Yes</form:option>
+			<form:option value="false">No</form:option>
+		</form:select>
+		<br/>
+		<label for="_whiplash_id">Whiplash</label>
+		<form:select id="_whiplash_id"
+			path="${injuryPath}.whiplash">
+			<form:option value=""></form:option>
+			<form:option value="true">Yes</form:option>
+			<form:option value="false">No</form:option>
+		</form:select>
+		<br/>
+		<label for="_other_id">Other</label>
+		<form:select id="_other_id"
+			path="${injuryPath}.other">
+			<form:option value=""></form:option>
+			<form:option value="true">Yes</form:option>
+			<form:option value="false">No</form:option>
+		</form:select>
+		<br/>
+		<label for="_injuryDescription_id">Injury description</label>
+		<form:textarea cols="40" rows="5" id="_injuryDescription_id" path="${injuryPath}.injuryDescription"/>
+		<form:errors cssClass="errors" path="${injuryPath}.injuryDescription"/>
+		<br/>
+
+</div>

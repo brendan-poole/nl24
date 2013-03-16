@@ -1,0 +1,18 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+
+	<ul class="basictab">
+		<li id="selectedtab">
+			<button class="tabbutton" name="page" value="creditServiceProvider">Credit service provider</button>
+		</li>
+	</ul>
+	<div class="tabcontent">
+		Name: ${command.processInstance.data.creditServiceProviderInstruction.creditServiceProvider.name}<br/>
+		Telephone: ${command.processInstance.data.creditServiceProviderInstruction.creditServiceProvider.telephone}<br/>
+		Client VRN: ${command.processInstance.data.client.vehicle.vrn}
+
+	</div>
+	<div style="float:inherit; clear: both; height: 0px;"/>
+</div>

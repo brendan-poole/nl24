@@ -1,0 +1,19 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+
+	<ul class="basictab">
+		<li id="selectedtab">
+			<button class="tabbutton" name="page" value="client">Client</button>
+		</li>
+	</ul>
+	<div class="tabcontent">
+		Name: ${command.processInstance.data.client.contact.name}<br/>
+		Mobile telephone: ${command.processInstance.data.client.contact.mobileTelephone}<br/>
+		Home telephone: ${command.processInstance.data.client.contact.homeTelephone}<br/>
+		Work telephone: ${command.processInstance.data.client.contact.workTelephone}<br/>
+
+	</div>
+	<div style="float:inherit; clear: both; height: 0px;"/>
+</div>

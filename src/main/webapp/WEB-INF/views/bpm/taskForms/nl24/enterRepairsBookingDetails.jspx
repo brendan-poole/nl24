@@ -1,0 +1,41 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+
+	<ul class="basictab">
+
+		<li id="selectedtab">
+			<button class="tabbutton" name="page" value="repairsBooking">Repairs</button>
+		</li>
+	</ul>
+	<div class="tabcontent">
+		<c:if test="${command.currentPage == 'repairsBooking'}">
+			<c:set var="searchLabel" scope="request" value="Repairer"/>
+			<c:set var="searchEntity" scope="request" value="Repairer"/>
+			<c:set var="searchPath" scope="request" value="processInstance.data.creditServiceProviderInstruction.repairer"/>
+			<c:set var="searchValueId" scope="request" value="${command.processInstance.data.creditServiceProviderInstruction.repairer.id}"/>
+			<c:set var="searchValue" scope="request" value="${command.processInstance.data.creditServiceProviderInstruction.repairer}"/>
+			<jsp:include page="fragments/organisationSearchFragment.jspx"/>
+			<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.repairer"/>
+			<br/>		
+			<label for="_repairerJobNumber_id">Job number</label>
+			<form:input id="_repairerJobNumber_id" path="processInstance.data.creditServiceProviderInstruction.repairerJobNumber"
+				cssClass="width200px" />
+			<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.repairerJobNumber"/>
+				
+			<br />
+			<label for="_repairsStatus_id">Repairs status</label>
+			<form:input id="_repairsStatus_id" path="processInstance.data.creditServiceProviderInstruction.repairsStatus"
+				cssClass="width200px" />
+			<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.repairsStatus"/>
+			<br />
+			<label for="_estimatedRepairsCompletionDate_id">Estimated completion date</label>
+			<form:input id="_estimatedRepairsCompletionDate_id"
+				path="processInstance.data.creditServiceProviderInstruction.estimatedRepairsCompletionDate"/>
+			<form:errors cssClass="errors" path="processInstance.data.creditServiceProviderInstruction.estimatedRepairsCompletionDate"/>
+		</c:if>
+		<div style="float:inherit; clear: both; height: 0px;"/>
+		
+	</div>
+</div>

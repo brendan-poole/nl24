@@ -1,0 +1,39 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<li id="selectedtab"><button class="tabbutton" name="page" value="dapRequest">DAP request</button></li>
+	</ul>
+	<div class="tabcontent">
+	<div style="width: 50%">
+	<c:if test="${command.currentPage == 'dapRequest'}">
+	
+		<c:set var="searchLabel" scope="request" value="Trainee"/>
+		<c:set var="searchEntity" scope="request" value="Newlaw"/>
+		<c:set var="searchSeq" scope="request" value="1"/>
+		<c:set var="searchPath" scope="request" value="processInstance.transientVariables['trainee']"/>
+		<c:set var="searchValue" scope="request" value="${command.processInstance.transientVariables['trainee']}"/>
+		<jsp:include page="../fragments/userSearchFragment.jspx"/>
+		<br/>
+		<c:set var="searchLabel" scope="request" value="Manager"/>
+		<c:set var="searchEntity" scope="request" value="Newlaw"/>
+		<c:set var="searchSeq" scope="request" value="2"/>
+		<c:set var="searchPath" scope="request" value="processInstance.transientVariables['manager']"/>
+		<c:set var="searchValue" scope="request" value="${command.processInstance.transientVariables['manager']}"/>
+		<jsp:include page="../fragments/userSearchFragment.jspx"/>
+		<br/>
+		<label for="_claim_id">Claim</label>
+		<form:input id="_claim_id" path="processInstance.data.claimRef"
+			cssClass="width200px" />
+		<br/>
+		<label for="_details_id">Details</label>
+		<form:textarea id="_details_id" path="processInstance.data.details"
+			cssClass="width200px" />
+		<br/>
+		
+	</c:if>
+	</div>
+	<div style="float:inherit; clear: both; height: 0px;"/>
+	</div>
+</div>

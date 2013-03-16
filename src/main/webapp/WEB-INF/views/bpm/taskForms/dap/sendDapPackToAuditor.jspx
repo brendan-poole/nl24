@@ -1,0 +1,20 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<ul class="basictab">
+		<li id="selectedtab"><button class="tabbutton" name="page" value="dapPack">DAP Pack</button></li>
+	</ul>
+	<div class="tabcontent">
+	Attach the DAP pack to an email and send it to the auditor before continuing.
+	<br/>
+	<br/>
+	<c:if test="${command.currentPage == 'dapPack'}">
+	Auditor: ${command.processInstance.swimlaneAssignees['auditor']}
+	<br/>
+	<br/>
+	<spring:url var="dapDocs" value="/resources/dapDocs"/>
+	<a href="${dapDocs}">Auditor's DAP Pack</a>
+	</c:if>
+	</div>
+</div>
